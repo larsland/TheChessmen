@@ -1,24 +1,17 @@
 package tdt4240.chess.Models.Chessmen;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-
-import tdt4240.chess.Assets;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import tdt4240.chess.Models.Chessman;
+import tdt4240.chess.Models.ChessmanColor;
 
 public class Pawn extends Chessman {
 
-    private static Texture image;
+    private static TextureRegion image;
 
-
-    public Pawn() {
-        super(ChessmanColor.BLACK);
-        image = Assets.loadChessmenImages()[0].getTexture();
+    public Pawn(int x, int y, ChessmanColor color) {
+        super(color, 0);
+        this.setBounds(x, y, 1, 1);
     }
 
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        super.draw(batch, 1);
-        batch.draw(image, this.getX(), this.getY(), 1, 1);
-    }
+
 }
