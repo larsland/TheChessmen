@@ -1,7 +1,6 @@
 package tdt4240.chess.Models;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-
 import tdt4240.chess.Controllers.BoardController;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Chessmen.Bishop;
@@ -27,12 +26,12 @@ public class Board extends Table {
         chessmen = new Chessman[8][8];
         addTiles();
         addChessmen();
-
     }
 
     public Tile getTileAt(int x, int y) {
         return this.tiles[x][y];
     }
+    public Chessman getChessmanAt(int x, int y) { return this.chessmen[x][y]; }
 
     public void addTiles() {
         char lastTile = 'w';
@@ -67,7 +66,6 @@ public class Board extends Table {
             this.addChessman(new Pawn(i, 6, ChessmanColor.WHITE));
         }
 
-
         this.addChessman(new Rock(0, 0, ChessmanColor.BLACK));
         this.addChessman(new Rock(7, 0, ChessmanColor.BLACK));
         this.addChessman(new Rock(0, 7, ChessmanColor.WHITE));
@@ -92,10 +90,15 @@ public class Board extends Table {
         /* Set and add kings. */
         this.addChessman(new King(4, 7, ChessmanColor.WHITE));
         this.addChessman(new King(4, 0, ChessmanColor.BLACK));
-
-
     }
 
+    public void updateChessmenPossitions(int oldX, int oldY, int x, int y) {
+        Chessman chessman = this.chessmen[oldX][oldY];
+        this.chessmen[x][y] = chessman;
+        this.chessmen[oldX][oldY] = null;
+        chessman.setX(x);
+        chessman.setY(y);
+    }
 
     public void addChessman(Chessman man) {
         this.addActor(man);

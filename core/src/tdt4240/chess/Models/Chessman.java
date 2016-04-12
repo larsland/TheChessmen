@@ -14,7 +14,8 @@ public class Chessman extends Actor {
     private ChessmanColor color;
     public int imageOffset;
     private TextureRegion image;
-    private ArrayList<Tuple> legalMoves = new ArrayList<Tuple>();
+    protected ArrayList<Tuple> legalMoves = new ArrayList<Tuple>();
+    protected ArrayList<Tuple> attackMoves = new ArrayList<Tuple>();
 
     public Chessman(ChessmanColor color, int type) {
         this.color = color;
@@ -29,14 +30,15 @@ public class Chessman extends Actor {
         batch.draw(image, this.getX(), this.getY(), 1, 1);
     }
 
-    public void addLegalMoves(Tuple move) {
-        this.legalMoves.add(move);
-    }
+
     public ArrayList<Tuple> getLegalMoves() {
         return this.legalMoves;
     }
-    public ChessmanColor getChessmanColor() {
-        return this.color;
+
+
+    public void moved() {}
+    public void attackMoves() {
+
     }
 
 

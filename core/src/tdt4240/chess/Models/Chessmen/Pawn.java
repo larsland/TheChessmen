@@ -14,21 +14,20 @@ public class Pawn extends Chessman {
         this.setBounds(x, y, 1, 1);
 
         if (color == ChessmanColor.BLACK) {
-            addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() + 1));
-            addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() + 2));
+            this.legalMoves.add(new Tuple(0, 1));
+            this.legalMoves.add(new Tuple(0, 2));
         }
         else if(color == ChessmanColor.WHITE) {
-            addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() -1));
-            addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() -2));
+            this.legalMoves.add(new Tuple(0, -1));
+            this.legalMoves.add(new Tuple(0, -2));
         }
-
     }
 
-
-
-
-
-
-
-
+    @Override
+    public void moved() {
+        super.moved();
+        if (this.legalMoves.size() == 2) {
+            this.legalMoves.remove(1);
+        }
+    }
 }
