@@ -12,8 +12,16 @@ public class Pawn extends Chessman {
     public Pawn(int x, int y, ChessmanColor color) {
         super(color, 0);
         this.setBounds(x, y, 1, 1);
-        addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() + 1));
-        addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() + 2));
+
+        if (color == ChessmanColor.BLACK) {
+            addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() + 1));
+            addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() + 2));
+        }
+        else if(color == ChessmanColor.WHITE) {
+            addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() -1));
+            addLegalMoves(new Tuple((int) this.getX(), (int) this.getY() -2));
+        }
+
     }
 
 

@@ -19,7 +19,7 @@ public class Chessman extends Actor {
     public Chessman(ChessmanColor color, int type) {
         this.color = color;
         imageOffset = type;
-        if (this.color.equals(ChessmanColor.BLACK)) imageOffset +=6;
+        if (this.color.equals(ChessmanColor.WHITE)) imageOffset +=6;
         image = Assets.loadChessmenImages()[imageOffset];
     }
 
@@ -34,6 +34,9 @@ public class Chessman extends Actor {
     }
     public ArrayList<Tuple> getLegalMoves() {
         return this.legalMoves;
+    }
+    public ChessmanColor getChessmanColor() {
+        return this.color;
     }
 
 

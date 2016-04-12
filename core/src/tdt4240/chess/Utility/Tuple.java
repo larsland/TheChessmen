@@ -1,8 +1,8 @@
 package tdt4240.chess.Utility;
 
 public class Tuple {
-    final int x;
-    final int y;
+    private int x;
+    private int y;
 
     public Tuple(int x, int y) {
         this.x = x;
@@ -14,5 +14,8 @@ public class Tuple {
     }
     public int getY() {
         return this.y;
+    }
+    public void setY(int y) {
+        this.y = y;
     }
 }
