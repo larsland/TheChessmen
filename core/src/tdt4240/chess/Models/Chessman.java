@@ -34,6 +34,9 @@ public class Chessman extends Actor {
     public ArrayList<Tuple> getLegalMoves() {
         return this.legalMoves;
     }
+    public ArrayList<Tuple> getAttackMoves() {
+        return this.attackMoves;
+    }
 
 
     public void moved() {}

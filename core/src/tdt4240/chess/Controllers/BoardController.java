@@ -15,6 +15,7 @@ public class BoardController extends ClickListener {
     private ArrayList<Tile> highlightedTiles;
     private ArrayList<Chessman> selectedChessman;
     private ArrayList<Tile> highlightAttackMoves;
+    private String turn = "black";
 
     public BoardController(Board board) {
         this.board = board;
@@ -28,12 +29,18 @@ public class BoardController extends ClickListener {
         Actor target = event.getTarget();
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
 
-        if (selectedTile.highlighted) {
-            moveChessman(selectedChessman.get(0), selectedTile);
-        }
 
+        if (!highlightAttackMoves.isEmpty()) {
+            removeHighlightedTiles(highlightAttackMoves);
+        }
+        if (selectedTile.highlighted) {
+            moveChessman(selectedChessman.get(0), selectedTile, false);
+        }
+        if (selectedTile.attackable) {
+            moveChessman(selectedChessman.get(0), selectedTile, true);
+        }
         if (!highlightedTiles.isEmpty()) {
-            removeHighlightedLegalMoves();
+            removeHighlightedTiles(highlightedTiles);
         }
 
         if (selectedTiles.isEmpty()) {
@@ -46,6 +53,9 @@ public class BoardController extends ClickListener {
         selectedTiles.get(0).selected = true;
 
         if (target.getClass().getSuperclass().equals(Chessman.class)) {
+            if(highlightAttackMoves.isEmpty()) {
+                highlightAttackMoves((Chessman) target);
+            }
             if (selectedChessman.isEmpty()) {
                 selectedChessman.add((Chessman) target);
             }
@@ -58,7 +68,7 @@ public class BoardController extends ClickListener {
                 highlightLegalMoves((Chessman) target);
             }
             else {
-                removeHighlightedLegalMoves();
+                removeHighlightedTiles(highlightedTiles);
                 highlightLegalMoves((Chessman) target);
             }
         }
@@ -77,13 +87,26 @@ public class BoardController extends ClickListener {
             }
         }
     }
-    public void removeHighlightedLegalMoves() {
-        for (int i = 0; i < highlightedTiles.size(); i++) {
-            highlightedTiles.get(i).highlighted = false;
+
+    public void highlightAttackMoves(Chessman chessman) {
+        for (int i = 0; i < chessman.getAttackMoves().size(); i++) {
+            Tile tile = board.getTileAt((int) chessman.getX() + chessman.getAttackMoves().get(i).getX(), (int) chessman.getY() + chessman.getAttackMoves().get(i).getY());
+
+            if (!checkValidMoves(tile)) {
+                tile.attackable = true;
+                highlightAttackMoves.add(tile);
+            }
         }
-        highlightedTiles.clear();
     }
-    public void moveChessman(Chessman chessman, Tile tile) {
+
+    public void removeHighlightedTiles(ArrayList<Tile> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).highlighted = false;
+            list.get(i).attackable = false;
+        }
+        list.clear();
+    }
+    public void moveChessman(Chessman chessman, Tile tile, boolean attack) {
         int oldX = (int) chessman.getX();
         int oldY = (int) chessman.getY();
 
@@ -91,8 +114,13 @@ public class BoardController extends ClickListener {
         chessman.setY(tile.getY());
         chessman.moved();
 
+        if (attack) {
+            board.removeChessmanAt((int) chessman.getX(), (int) chessman.getY());
+        }
         board.updateChessmenPossitions(oldX, oldY, (int) chessman.getX(), (int) chessman.getY());
+
     }
+
     public boolean checkValidMoves(Tile tile) {
         int x = (int) tile.getX();
         int y = (int) tile.getY();

@@ -100,6 +100,10 @@ public class Board extends Table {
         chessman.setY(y);
     }
 
+    public void removeChessmanAt(int x, int y) {
+        this.chessmen[x][y] = null;
+    }
+
     public void addChessman(Chessman man) {
         this.addActor(man);
         this.chessmen[(int) man.getX()][(int) man.getY()] = man;

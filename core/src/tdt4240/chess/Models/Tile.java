@@ -12,6 +12,7 @@ public class Tile extends Actor {
     private int x, y;
     public boolean selected;
     public boolean highlighted;
+    public boolean attackable;
 
     public Tile(char c, int x, int y) {
 
@@ -39,6 +40,9 @@ public class Tile extends Actor {
         }
         else if (this.highlighted) {
             batch.draw(new Texture(Gdx.files.internal("moveHighlight.png")), this.getX(), this.getY(), 1, 1);
+        }
+        else if (this.attackable) {
+            batch.draw(new Texture(Gdx.files.internal("attackHighlight.png")), this.getX(), this.getY(), 1, 1);
         }
         else {
             batch.draw(texture, this.getX(), this.getY(), 1, 1);

@@ -16,10 +16,15 @@ public class Pawn extends Chessman {
         if (color == ChessmanColor.BLACK) {
             this.legalMoves.add(new Tuple(0, 1));
             this.legalMoves.add(new Tuple(0, 2));
+            this.attackMoves.add(new Tuple(1, 1));
+            this.attackMoves.add(new Tuple(-1, 1));
+
         }
         else if(color == ChessmanColor.WHITE) {
             this.legalMoves.add(new Tuple(0, -1));
             this.legalMoves.add(new Tuple(0, -2));
+            this.attackMoves.add(new Tuple(-1, -1));
+            this.attackMoves.add(new Tuple(1, -1));
         }
     }
 
