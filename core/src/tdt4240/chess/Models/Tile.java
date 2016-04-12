@@ -10,6 +10,8 @@ public class Tile extends Actor {
     private TileColor color;
     private Texture texture;
     private int x, y;
+    public boolean selected;
+    public boolean highlighted;
 
     public Tile(char c, int x, int y) {
 
@@ -31,7 +33,18 @@ public class Tile extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, 1);
-        batch.draw(texture, this.getX(), this.getY(), 1, 1);
+
+        if (this.selected) {
+            batch.draw(new Texture(Gdx.files.internal("highlight.png")), this.getX(), this.getY(), 1, 1);
+        }
+        else if (this.highlighted) {
+            batch.draw(new Texture(Gdx.files.internal("moveHighlight.png")), this.getX(), this.getY(), 1, 1);
+        }
+        else {
+            batch.draw(texture, this.getX(), this.getY(), 1, 1);
+        }
+
+
     }
 
 
