@@ -174,28 +174,28 @@ public class BoardController extends ClickListener {
                     break;
                 case NORTHEAST:
                     for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
-                        if (board.getChessmanAt(x, x) != null) {
+                        if (board.getChessmanAt(x, (int) (chessman.getY() + (x - chessman.getX()))) != null) {
                             return false;
                         }
                     }
                     break;
                 case SOUTHWEST:
-                    for (int x = (int) chessman.getX() - 1; x <= tile.getX(); x--) {
-                        if (board.getChessmanAt(x, x) != null) {
+                    for (int x = (int) chessman.getX() - 1; x >= tile.getX(); x--) {
+                        if (board.getChessmanAt(x, (int) (chessman.getY() - (chessman.getX() - x))) != null) {
                             return false;
                         }
                     }
                     break;
                 case NORTHWEST:
-                    for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
-                        if (board.getChessmanAt(-x, x) != null) {
+                    for (int y = (int) chessman.getY() + 1; y <= tile.getY(); y++) {
+                        if (board.getChessmanAt((int) (chessman.getY() + (chessman.getX() - y)), y) != null) {
                             return false;
                         }
                     }
                     break;
                 case SOUTHEAST:
                     for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
-                        if (board.getChessmanAt(x, -x) != null) {
+                        if (board.getChessmanAt(x, (int) (chessman.getY() + (chessman.getX() - x))) != null) {
                             return false;
                         }
                     }
