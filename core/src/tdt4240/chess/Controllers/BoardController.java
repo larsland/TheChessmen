@@ -76,26 +76,34 @@ public class BoardController extends ClickListener {
 
     public void highlightLegalMoves(Chessman chessman) {
         for (int i = 0; i < chessman.getLegalMoves().size(); i++) {
-            Tile tile = board.getTileAt((int) chessman.getX() + chessman.getLegalMoves().get(i).getX(), (int) chessman.getY() + chessman.getLegalMoves().get(i).getY());
-
-            if (checkValidMoves(tile)) {
-                tile.highlighted = true;
-                highlightedTiles.add(tile);
+            Tile tile = null;
+            try {
+                tile = board.getTileAt((int) chessman.getX() + chessman.getLegalMoves().get(i).getX(), (int) chessman.getY() + chessman.getLegalMoves().get(i).getY());
+                if (checkValidMoves(tile)) {
+                    tile.highlighted = true;
+                    highlightedTiles.add(tile);
+                }
             }
-            else {
-                break;
+            catch (ArrayIndexOutOfBoundsException e) {
+
             }
         }
     }
 
     public void highlightAttackMoves(Chessman chessman) {
         for (int i = 0; i < chessman.getAttackMoves().size(); i++) {
-            Tile tile = board.getTileAt((int) chessman.getX() + chessman.getAttackMoves().get(i).getX(), (int) chessman.getY() + chessman.getAttackMoves().get(i).getY());
-
-            if (!checkValidMoves(tile)) {
-                tile.attackable = true;
-                highlightAttackMoves.add(tile);
+            Tile tile = null;
+            try {
+                tile = board.getTileAt((int) chessman.getX() + chessman.getAttackMoves().get(i).getX(), (int) chessman.getY() + chessman.getAttackMoves().get(i).getY());
+                if (!checkValidMoves(tile)) {
+                    tile.attackable = true;
+                    highlightAttackMoves.add(tile);
+                }
             }
+            catch (ArrayIndexOutOfBoundsException e) {
+
+            }
+
         }
     }
 
@@ -122,9 +130,12 @@ public class BoardController extends ClickListener {
     }
 
     public boolean checkValidMoves(Tile tile) {
-        int x = (int) tile.getX();
-        int y = (int) tile.getY();
-        return board.getChessmanAt(x, y) == null;
+        if (tile != null) {
+            int x = (int) tile.getX();
+            int y = (int) tile.getY();
+            return board.getChessmanAt(x, y) == null;
+        }
+        return false;
     }
 
 } //Class
