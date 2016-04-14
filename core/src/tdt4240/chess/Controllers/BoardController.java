@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.ArrayList;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
+import tdt4240.chess.Models.Chessmen.Direction;
 import tdt4240.chess.Models.Tile;
 
 public class BoardController extends ClickListener {
@@ -79,7 +80,7 @@ public class BoardController extends ClickListener {
             Tile tile = null;
             try {
                 tile = board.getTileAt((int) chessman.getX() + chessman.getLegalMoves().get(i).getX(), (int) chessman.getY() + chessman.getLegalMoves().get(i).getY());
-                if (checkValidMoves(tile)) {
+                if (checkValidMoves(chessman, tile)) {
                     tile.highlighted = true;
                     highlightedTiles.add(tile);
                 }
@@ -95,7 +96,7 @@ public class BoardController extends ClickListener {
             Tile tile = null;
             try {
                 tile = board.getTileAt((int) chessman.getX() + chessman.getAttackMoves().get(i).getX(), (int) chessman.getY() + chessman.getAttackMoves().get(i).getY());
-                if (!checkValidMoves(tile)) {
+                if (!checkValidMoves(chessman, tile)) {
                     tile.attackable = true;
                     highlightAttackMoves.add(tile);
                 }
@@ -129,13 +130,59 @@ public class BoardController extends ClickListener {
 
     }
 
-    public boolean checkValidMoves(Tile tile) {
+    public boolean checkValidMoves(Chessman chessman, Tile tile) {
         if (tile != null) {
-            int x = (int) tile.getX();
-            int y = (int) tile.getY();
-            return board.getChessmanAt(x, y) == null;
+            Direction direction = getMoveDirection(chessman, tile);
+
+            if (board.getChessmanAt((int) tile.getX(), (int) tile.getY()) == null) {
+                return true;
+            }
+
+            switch (direction) {
+                case NORTH:
+                    for (int x = (int) chessman.getY() + 1; x < tile.getY(); x++) {
+                        System.out.println("Checking --- " + Integer.toString(x));
+                        if (board.getChessmanAt((int) chessman.getX(), x) != null) {
+                            return false;
+                        }
+                    }
+                    //
+            }
+            return true;
         }
         return false;
     }
 
+    private Direction getMoveDirection(Chessman chessman, Tile tile) {
+        int xDist = (int) (tile.getX() - chessman.getX());
+        int yDist = (int) (tile.getY() - chessman.getY());
+
+        if (xDist > 0 && yDist == 0) {
+            return Direction.EAST;
+        }
+        else if (xDist < 0 && yDist == 0) {
+            return Direction.WEST;
+        }
+        else if (yDist > 0 && xDist == 0) {
+            return Direction.NORTH;
+        }
+        else if (yDist < 0 && xDist == 0) {
+            return Direction.SOUTH;
+        }
+        else if (xDist == yDist) {
+            if (xDist > 0) {
+                return Direction.NORTHEAST;
+            }
+            else if (xDist < 0) {
+                return Direction.SOUTHWEST;
+            }
+        }
+        else if (xDist < 0 && yDist > 0) {
+            return Direction.NORTHWEST;
+        }
+        else {
+            return Direction.SOUTHEAST;
+        }
+        return null;
+    }
 } //Class
