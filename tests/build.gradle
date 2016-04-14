@@ -1,0 +1,25 @@
+
+
+apply plugin: "java"
+
+sourceCompatibility = 1.6
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+
+
+sourceSets {
+	test {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir '../android/assets'
+        }
+    }
+    
+    
+}
+
+eclipse.project {
+    name = appName + "-tests"
+}
