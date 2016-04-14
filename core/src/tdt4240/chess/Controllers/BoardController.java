@@ -133,19 +133,33 @@ public class BoardController extends ClickListener {
     public boolean checkValidMoves(Chessman chessman, Tile tile) {
         if (tile != null) {
             Direction direction = getMoveDirection(chessman, tile);
-
-            if (board.getChessmanAt((int) tile.getX(), (int) tile.getY()) == null) {
-                return true;
-            }
-
             switch (direction) {
                 case NORTH:
-                    for (int x = (int) chessman.getY() + 1; x < tile.getY(); x++) {
-                        System.out.println("Checking --- " + Integer.toString(x));
+                    for (int x = (int) chessman.getY() + 1; x <= tile.getY(); x++) {
                         if (board.getChessmanAt((int) chessman.getX(), x) != null) {
                             return false;
                         }
                     }
+                case SOUTH:
+                    for (int x = (int) chessman.getY() - 1; x >= tile.getY(); x--) {
+                        if (board.getChessmanAt((int) chessman.getX(), x) != null) {
+                            return false;
+                        }
+                    }
+                case WEST:
+                    for (int x = (int) chessman.getX() - 1; x >= tile.getX(); x--) {
+                        if (board.getChessmanAt(x, (int) chessman.getY()) != null) {
+                            return false;
+                        }
+                    }
+                case EAST:
+                    for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
+                        if (board.getChessmanAt(x, (int) chessman.getY()) != null) {
+                            return false;
+                        }
+                    }
+
+                }
                     //
             }
             return true;
