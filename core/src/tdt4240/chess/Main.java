@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import tdt4240.chess.Screens.MainMenu;
+import tdt4240.chess.Views.MainMenu;
 
 public class Main extends Game {
 	public SpriteBatch batch;
