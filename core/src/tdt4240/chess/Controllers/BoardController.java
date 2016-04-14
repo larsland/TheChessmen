@@ -30,16 +30,19 @@ public class BoardController extends ClickListener {
         Actor target = event.getTarget();
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
 
-
+        /*
         if (!highlightAttackMoves.isEmpty()) {
             removeHighlightedTiles(highlightAttackMoves);
         }
+        */
         if (selectedTile.highlighted) {
             moveChessman(selectedChessman.get(0), selectedTile, false);
         }
+        /*
         if (selectedTile.attackable) {
             moveChessman(selectedChessman.get(0), selectedTile, true);
         }
+        */
         if (!highlightedTiles.isEmpty()) {
             removeHighlightedTiles(highlightedTiles);
         }
@@ -54,9 +57,11 @@ public class BoardController extends ClickListener {
         selectedTiles.get(0).selected = true;
 
         if (target.getClass().getSuperclass().equals(Chessman.class)) {
+            /*
             if(highlightAttackMoves.isEmpty()) {
                 highlightAttackMoves((Chessman) target);
             }
+            */
             if (selectedChessman.isEmpty()) {
                 selectedChessman.add((Chessman) target);
             }
@@ -133,6 +138,11 @@ public class BoardController extends ClickListener {
     public boolean checkValidMoves(Chessman chessman, Tile tile) {
         if (tile != null) {
             Direction direction = getMoveDirection(chessman, tile);
+
+            if (board.getChessmanAt((int) tile.getX(), (int) tile.getY()) != null) {
+                return false;
+            }
+            System.out.println(direction);
             switch (direction) {
                 case NORTH:
                     for (int x = (int) chessman.getY() + 1; x <= tile.getY(); x++) {
@@ -140,26 +150,56 @@ public class BoardController extends ClickListener {
                             return false;
                         }
                     }
+                    break;
                 case SOUTH:
                     for (int x = (int) chessman.getY() - 1; x >= tile.getY(); x--) {
                         if (board.getChessmanAt((int) chessman.getX(), x) != null) {
                             return false;
                         }
                     }
+                    break;
                 case WEST:
                     for (int x = (int) chessman.getX() - 1; x >= tile.getX(); x--) {
                         if (board.getChessmanAt(x, (int) chessman.getY()) != null) {
                             return false;
                         }
                     }
+                    break;
                 case EAST:
                     for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
                         if (board.getChessmanAt(x, (int) chessman.getY()) != null) {
                             return false;
                         }
                     }
-
-                }
+                    break;
+                case NORTHEAST:
+                    for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
+                        if (board.getChessmanAt(x, x) != null) {
+                            return false;
+                        }
+                    }
+                    break;
+                case SOUTHWEST:
+                    for (int x = (int) chessman.getX() - 1; x <= tile.getX(); x--) {
+                        if (board.getChessmanAt(x, x) != null) {
+                            return false;
+                        }
+                    }
+                    break;
+                case NORTHWEST:
+                    for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
+                        if (board.getChessmanAt(-x, x) != null) {
+                            return false;
+                        }
+                    }
+                    break;
+                case SOUTHEAST:
+                    for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
+                        if (board.getChessmanAt(x, -x) != null) {
+                            return false;
+                        }
+                    }
+                    break;
                     //
             }
             return true;
@@ -171,7 +211,15 @@ public class BoardController extends ClickListener {
         int xDist = (int) (tile.getX() - chessman.getX());
         int yDist = (int) (tile.getY() - chessman.getY());
 
-        if (xDist > 0 && yDist == 0) {
+        if (xDist == yDist) {
+            if (xDist > 0) {
+                return Direction.NORTHEAST;
+            }
+            else if (xDist < 0) {
+                return Direction.SOUTHWEST;
+            }
+        }
+        else if (xDist > 0 && yDist == 0) {
             return Direction.EAST;
         }
         else if (xDist < 0 && yDist == 0) {
@@ -183,14 +231,7 @@ public class BoardController extends ClickListener {
         else if (yDist < 0 && xDist == 0) {
             return Direction.SOUTH;
         }
-        else if (xDist == yDist) {
-            if (xDist > 0) {
-                return Direction.NORTHEAST;
-            }
-            else if (xDist < 0) {
-                return Direction.SOUTHWEST;
-            }
-        }
+
         else if (xDist < 0 && yDist > 0) {
             return Direction.NORTHWEST;
         }
