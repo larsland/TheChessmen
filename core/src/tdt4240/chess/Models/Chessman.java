@@ -42,6 +42,10 @@ public class Chessman extends Actor {
         this.legalMoves = moves;
     }
 
+    public Color getChessmanColor() {
+        return this.color;
+    }
+
 
 
 

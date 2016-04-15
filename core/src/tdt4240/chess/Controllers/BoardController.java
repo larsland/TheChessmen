@@ -62,6 +62,8 @@ public class BoardController extends ClickListener {
 
         if (target.getClass().getSuperclass().equals(Chessman.class)) {
 
+            Chessman man = (Chessman) target;
+
             if(highlightAttackMoves.isEmpty()) {
                 highlightAttackMoves((Chessman) target);
             }
@@ -138,6 +140,7 @@ public class BoardController extends ClickListener {
             board.removeChessmanAt((int) chessman.getX(), (int) chessman.getY());
         }
         board.updateChessmenPossitions(oldX, oldY, (int) chessman.getX(), (int) chessman.getY());
+        board.nextTurn();
 
     }
 
