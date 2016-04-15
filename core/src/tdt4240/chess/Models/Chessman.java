@@ -11,16 +11,16 @@ import tdt4240.chess.Utility.Tuple;
 
 public class Chessman extends Actor {
 
-    private ChessmanColor color;
+    private Color color;
     public int imageOffset;
     private TextureRegion image;
     protected ArrayList<Tuple> legalMoves = new ArrayList<Tuple>();
     protected ArrayList<Tuple> attackMoves = new ArrayList<Tuple>();
 
-    public Chessman(ChessmanColor color, int type) {
+    public Chessman(Color color, int type) {
         this.color = color;
         imageOffset = type;
-        if (this.color.equals(ChessmanColor.WHITE)) imageOffset +=6;
+        if (this.color.equals(Color.WHITE)) imageOffset +=6;
         image = Assets.loadChessmenImages()[imageOffset];
     }
 
