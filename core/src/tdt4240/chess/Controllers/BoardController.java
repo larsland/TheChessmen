@@ -18,6 +18,7 @@ public class BoardController extends ClickListener {
     private ArrayList<Chessman> selectedChessman;
     private ArrayList<Tile> highlightAttackMoves;
     private Color turn = Color.BLACK;
+    private ChessmanController chessmanController;
 
     public BoardController(Board board) {
         this.board = board;
@@ -25,12 +26,12 @@ public class BoardController extends ClickListener {
         highlightedTiles = new ArrayList<Tile>();
         selectedChessman = new ArrayList<Chessman>();
         highlightAttackMoves = new ArrayList<Tile>();
+        chessmanController = new ChessmanController();
     }
 
     public void clicked(InputEvent event, float x, float y) {
         Actor target = event.getTarget();
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
-
 
         if (!highlightAttackMoves.isEmpty()) {
             removeHighlightedTiles(highlightAttackMoves);
@@ -127,7 +128,8 @@ public class BoardController extends ClickListener {
 
         chessman.setX(tile.getX());
         chessman.setY(tile.getY());
-        chessman.moved();
+        chessmanController.moved(chessman);
+
 
         if (attack) {
             board.removeChessmanAt((int) chessman.getX(), (int) chessman.getY());

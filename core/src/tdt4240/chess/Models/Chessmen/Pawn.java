@@ -27,12 +27,4 @@ public class Pawn extends Chessman {
             this.attackMoves.add(new Tuple(1, -1));
         }
     }
-
-    @Override
-    public void moved() {
-        super.moved();
-        if (this.legalMoves.size() == 2) {
-            this.legalMoves.remove(1);
-        }
-    }
 }
