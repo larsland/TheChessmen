@@ -143,7 +143,6 @@ public class BoardController extends ClickListener {
             if (board.getChessmanAt((int) tile.getX(), (int) tile.getY()) != null) {
                 return false;
             }
-            System.out.println(direction);
             switch (direction) {
                 case NORTH:
                     for (int x = (int) chessman.getY() + 1; x <= tile.getY(); x++) {
@@ -201,7 +200,11 @@ public class BoardController extends ClickListener {
                         }
                     }
                     break;
+                case UNDEFINED:
+                    break;
                     //
+                default:
+                    break;
             }
             return true;
         }
@@ -233,12 +236,12 @@ public class BoardController extends ClickListener {
             return Direction.SOUTH;
         }
 
-        else if (xDist < 0 && yDist > 0) {
+        else if (xDist < 0 && yDist > 0 && Math.abs(xDist) == Math.abs(yDist)) {
             return Direction.NORTHWEST;
         }
-        else {
+        else if (xDist > 0 && yDist < 0 && Math.abs(xDist) == Math.abs(yDist)) {
             return Direction.SOUTHEAST;
         }
-        return null;
+        return Direction.UNDEFINED;
     }
 } //Class
