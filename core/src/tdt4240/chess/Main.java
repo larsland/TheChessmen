@@ -15,6 +15,7 @@ public class Main extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
+		Assets.loadSounds();
 		this.setScreen(new MainMenu(this));
 	}
 

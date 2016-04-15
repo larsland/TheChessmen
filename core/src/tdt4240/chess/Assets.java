@@ -1,6 +1,8 @@
 package tdt4240.chess;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.SoundLoader;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -10,11 +12,8 @@ public class Assets {
 
     public static Skin skin;
     public static TextureAtlas gameAtlas;
-
-    public static void loadGame() {
-        gameAtlas = new TextureAtlas(Gdx.files.internal("open-chess-atlas.atlas"));
-        skin = new Skin(Gdx.files.internal("skin-all.json"));
-    }
+    public static Sound moveChessmanSound;
+    public static Sound backgroundMusic;
 
     public static TextureRegion[] loadChessmenImages() {
         int FRAME_COLS = 6;
@@ -32,4 +31,21 @@ public class Assets {
         }
         return chessMenCollection;
     }
+
+    public static void loadSounds() {
+        moveChessmanSound = Gdx.audio.newSound(Gdx.files.internal("moveChessmanSound.mp3"));
+        backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("dankTune.mp3"));
+    }
+
+    public static void moveChessman() {
+        moveChessmanSound.play(1.0f);
+    }
+    public static void playBackgroundMusic() {
+        backgroundMusic.loop(1.0f);
+    }
+    public static void stopPlayingBackgroundMusic() {
+        backgroundMusic.stop();
+    }
+
+
 }

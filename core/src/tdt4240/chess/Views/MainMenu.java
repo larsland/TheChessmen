@@ -20,7 +20,7 @@ public class MainMenu implements Screen {
 
     Main game;
     private final Stage stage = new Stage(new FitViewport(8, 12));
-    
+
     VerticalGroup menu;
     TextButton startBtn;
     TextButton optionsBtn;

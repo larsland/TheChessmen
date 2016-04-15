@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import tdt4240.chess.Assets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Board;
 
@@ -48,10 +49,12 @@ public class GameScreen implements Screen {
         menuBtn.addListener(new ClickListener() {
            public void clicked(InputEvent event, float x, float y) {
                game.setScreen(new MainMenu(game));
+               Assets.stopPlayingBackgroundMusic();
            }
         });
         btn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                Assets.stopPlayingBackgroundMusic();
                 game.setScreen(new GameScreen(game));
             }
         });
@@ -71,6 +74,7 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(this.stage);
         this.stage.addActor(board);
         createUi();
+        Assets.playBackgroundMusic();
     }
 
     public void render(float delta) {
