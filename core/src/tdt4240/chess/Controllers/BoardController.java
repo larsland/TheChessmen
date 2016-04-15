@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.Chessmen.Direction;
+import tdt4240.chess.Models.Color;
 import tdt4240.chess.Models.Tile;
 
 public class BoardController extends ClickListener {
@@ -16,7 +17,7 @@ public class BoardController extends ClickListener {
     private ArrayList<Tile> highlightedTiles;
     private ArrayList<Chessman> selectedChessman;
     private ArrayList<Tile> highlightAttackMoves;
-    private String turn = "black";
+    private Color turn = Color.BLACK;
 
     public BoardController(Board board) {
         this.board = board;
@@ -30,19 +31,19 @@ public class BoardController extends ClickListener {
         Actor target = event.getTarget();
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
 
-        /*
+
         if (!highlightAttackMoves.isEmpty()) {
             removeHighlightedTiles(highlightAttackMoves);
         }
-        */
+
         if (selectedTile.highlighted) {
             moveChessman(selectedChessman.get(0), selectedTile, false);
         }
-        /*
+
         if (selectedTile.attackable) {
             moveChessman(selectedChessman.get(0), selectedTile, true);
         }
-        */
+
         if (!highlightedTiles.isEmpty()) {
             removeHighlightedTiles(highlightedTiles);
         }
@@ -57,11 +58,11 @@ public class BoardController extends ClickListener {
         selectedTiles.get(0).selected = true;
 
         if (target.getClass().getSuperclass().equals(Chessman.class)) {
-            /*
+
             if(highlightAttackMoves.isEmpty()) {
                 highlightAttackMoves((Chessman) target);
             }
-            */
+
             if (selectedChessman.isEmpty()) {
                 selectedChessman.add((Chessman) target);
             }
@@ -142,7 +143,6 @@ public class BoardController extends ClickListener {
             if (board.getChessmanAt((int) tile.getX(), (int) tile.getY()) != null) {
                 return false;
             }
-            System.out.println(direction);
             switch (direction) {
                 case NORTH:
                     for (int x = (int) chessman.getY() + 1; x <= tile.getY(); x++) {
@@ -200,7 +200,11 @@ public class BoardController extends ClickListener {
                         }
                     }
                     break;
+                case UNDEFINED:
+                    break;
                     //
+                default:
+                    break;
             }
             return true;
         }
@@ -232,12 +236,12 @@ public class BoardController extends ClickListener {
             return Direction.SOUTH;
         }
 
-        else if (xDist < 0 && yDist > 0) {
+        else if (xDist < 0 && yDist > 0 && Math.abs(xDist) == Math.abs(yDist)) {
             return Direction.NORTHWEST;
         }
-        else {
+        else if (xDist > 0 && yDist < 0 && Math.abs(xDist) == Math.abs(yDist)) {
             return Direction.SOUTHEAST;
         }
-        return null;
+        return Direction.UNDEFINED;
     }
 } //Class
