@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.Chessmen.Pawn;
+import tdt4240.chess.Models.Color;
 import tdt4240.chess.Utility.Tuple;
 
 public class ChessmanController {
@@ -28,14 +29,12 @@ public class ChessmanController {
                     newMoves.add(new Tuple(0, -i));
                 }
                 chessman.setLegalMoves(newMoves);
-                if(chessman.getChessmanColor == White){
+                if(chessman.getChessmanColor() == Color.WHITE){
                     chessman.setSprite(6);
                 }else{
                     chessman.setSprite(1);
                 }
             }
-
-
         }
     }
 }

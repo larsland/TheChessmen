@@ -35,6 +35,10 @@ public class Chessman extends Actor {
         this.image = Assets.loadChessmenImages()[offset];
     }
 
+    public Color getChessmanColor(){
+        return this.color;
+    }
+
 
     public ArrayList<Tuple> getLegalMoves() {
         return this.legalMoves;
