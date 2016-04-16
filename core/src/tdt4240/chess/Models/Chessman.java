@@ -31,7 +31,7 @@ public class Chessman extends Actor {
     }
 
     public void setSprite(int offset){
-        this.image = Assets.loadChessmenImages()[offset];
+        this.image = GraphicsAssets.loadChessmenImages()[offset];
     }
 
     public Color getChessmanColor(){
@@ -51,8 +51,5 @@ public class Chessman extends Actor {
     }
 
     public void attackMoves() {
-    }
-    public Color getChessmanColor() {
-        return this.color;
     }
 }
