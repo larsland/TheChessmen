@@ -2,17 +2,20 @@ package tdt4240.chess.Views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import tdt4240.chess.Assets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Board;
 
@@ -28,6 +31,9 @@ public class GameScreen implements Screen {
     TextButton btn;
     TextButton menuBtn;
     Main game;
+    Label turnLabel;
+    String turn;
+    Board board;
 
     public GameScreen(Main game) {
         this.game = game;
@@ -37,6 +43,7 @@ public class GameScreen implements Screen {
         ui = new Table();
         skin = new Skin();
         font = new BitmapFont();
+        turnLabel = new Label(turn, new Label.LabelStyle(font, Color.BLACK));
         btnAtlas = new TextureAtlas(Gdx.files.internal("button.pack"));
         skin.addRegions(btnAtlas);
         btnStyle = new TextButton.TextButtonStyle();
@@ -48,15 +55,18 @@ public class GameScreen implements Screen {
         menuBtn.addListener(new ClickListener() {
            public void clicked(InputEvent event, float x, float y) {
                game.setScreen(new MainMenu(game));
+               Assets.stopPlayingBackgroundMusic();
            }
         });
         btn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                Assets.stopPlayingBackgroundMusic();
                 game.setScreen(new GameScreen(game));
             }
         });
         ui.add(btn);
         ui.add(menuBtn);
+        ui.add(turnLabel);
         ui.setTransform(true);
         ui.setScale(1 /this.btn.getHeight());
         ui.setPosition(4, 9);
@@ -65,17 +75,18 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        Board board;
         board = new Board();
         setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.input.setInputProcessor(this.stage);
         this.stage.addActor(board);
         createUi();
+        Assets.playBackgroundMusic();
     }
 
     public void render(float delta) {
         Gdx.gl.glClearColor(.3f, .3f, .4f, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+        this.turnLabel.setText(board.getTurn().name());
         this.stage.draw();
     }
 
@@ -104,11 +115,10 @@ public class GameScreen implements Screen {
         Gdx.graphics.requestRendering();
     }
 
-
-
     @Override
     public void dispose() {
         this.stage.dispose();
 
     }
+
 }

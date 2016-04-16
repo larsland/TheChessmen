@@ -14,6 +14,7 @@ public class Board extends Table {
 
     private Tile[][] tiles;
     private Chessman[][] chessmen;
+    private Color turn = Color.BLACK;
 
     private int size = 8;
 
@@ -111,6 +112,18 @@ public class Board extends Table {
 
     public Tile[][] getTiles() {
         return this.tiles;
+    }
+
+    public Color getTurn() {
+        return this.turn;
+    }
+    public void nextTurn() {
+        if (turn.equals(Color.BLACK)) {
+            turn = Color.WHITE;
+        }
+        else if (turn.equals(Color.WHITE)) {
+            turn = Color.BLACK;
+        }
     }
 
 

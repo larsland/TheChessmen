@@ -48,6 +48,4 @@ public class Chessman extends Actor {
     public Color getChessmanColor() {
         return this.color;
     }
-
-
 }

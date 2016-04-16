@@ -4,6 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.ArrayList;
+
+import tdt4240.chess.Assets;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.Chessmen.Direction;
@@ -94,6 +96,12 @@ public class BoardController extends ClickListener {
         selectedTiles.get(0).selected = true;
 
         if (target.getClass().getSuperclass().equals(Chessman.class)) {
+            Chessman man = (Chessman) target;
+
+            if(highlightAttackMoves.isEmpty()) {
+                highlightAttackMoves((Chessman) target);
+            }
+
             if (selectedChessman.isEmpty()) {
                 selectedChessman.add((Chessman) target);
             }
@@ -162,6 +170,8 @@ public class BoardController extends ClickListener {
         list.clear();
     }
     public void moveChessman(Chessman chessman, Tile tile, boolean attack) {
+        Assets.moveChessman();
+
         int oldX = (int) chessman.getX();
         int oldY = (int) chessman.getY();
 
@@ -169,11 +179,11 @@ public class BoardController extends ClickListener {
         chessman.setY(tile.getY());
         chessmanController.moved(chessman);
 
-
         if (attack) {
             board.removeChessmanAt((int) chessman.getX(), (int) chessman.getY());
         }
         board.updateChessmenPossitions(oldX, oldY, (int) chessman.getX(), (int) chessman.getY());
+        board.nextTurn();
 
     }
 
