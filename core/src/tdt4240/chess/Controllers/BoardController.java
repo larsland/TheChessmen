@@ -33,6 +33,7 @@ public class BoardController extends ClickListener {
     public void clicked(InputEvent event, float x, float y) {
         Actor target = event.getTarget();
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
+            
         if (selectedChessman.size() != 0) {
             if (selectedChessman.get(0).getChessmanColor() == turn) {
                 //moveChessman(selectedChessman.get(0), selectedTile, false);
