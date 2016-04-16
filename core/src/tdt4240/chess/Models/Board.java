@@ -102,7 +102,9 @@ public class Board extends Table {
     }
 
     public void removeChessmanAt(int x, int y) {
+        this.removeActor(this.chessmen[x][y]);
         this.chessmen[x][y] = null;
+
     }
 
     public void addChessman(Chessman man) {

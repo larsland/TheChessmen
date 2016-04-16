@@ -56,6 +56,9 @@ public class BoardController extends ClickListener {
                 if (highlightedTiles.contains(selectedTile)) {
                     moveChessman(selectedChessman, selectedTile, false);
                     turn = turn.opposite();
+                    if (checkWincondition()) {
+                        checkWincondition();
+                    }
                 }
                 selectedChessman = null;
                 removeHighlightedTiles(highlightedTiles);
@@ -65,6 +68,9 @@ public class BoardController extends ClickListener {
                 if (highlightAttackMoves.contains(selectedTile)) {
                     moveChessman(selectedChessman, selectedTile, true);
                     turn = turn.opposite();
+                    if (checkWincondition()) {
+
+                    }
                 }
                 removeHighlightedTiles(highlightedTiles);
                 removeHighlightedTiles(highlightAttackMoves);
@@ -275,5 +281,9 @@ public class BoardController extends ClickListener {
             return Direction.SOUTHEAST;
         }
         return Direction.UNDEFINED;
+    }
+
+    private boolean checkWincondition() {
+        return false;
     }
 } //Class
