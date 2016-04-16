@@ -17,7 +17,6 @@ import tdt4240.chess.Utility.Tuple;
 public class BoardController extends ClickListener {
 
     private final Board board;
-    private ArrayList<Tile> selectedTiles;
     private ArrayList<Tile> highlightedTiles;
     private Chessman selectedChessman;
     private ArrayList<Tile> highlightAttackMoves;
@@ -26,7 +25,6 @@ public class BoardController extends ClickListener {
 
     public BoardController(Board board) {
         this.board = board;
-        selectedTiles = new ArrayList<Tile>();
         highlightedTiles = new ArrayList<Tile>();
         selectedChessman = null;
         highlightAttackMoves = new ArrayList<Tile>();

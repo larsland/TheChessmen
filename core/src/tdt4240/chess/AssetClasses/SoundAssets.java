@@ -3,6 +3,8 @@ package tdt4240.chess.AssetClasses;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
+import tdt4240.chess.Models.Options;
+
 public class SoundAssets {
 
     public static Sound moveChessmanSound;
@@ -14,13 +16,20 @@ public class SoundAssets {
     }
 
     public static void moveChessman() {
-        moveChessmanSound.play(1.0f);
+        if (Options.SFX_ENABLED) {
+            moveChessmanSound.play(1.0f);
+        }
+
     }
     public static void playBackgroundMusic() {
-        backgroundMusic.loop(1.0f);
+        if (Options.MUSIC_ENABLED) {
+            backgroundMusic.loop(1.0f);
+        }
     }
     public static void stopPlayingBackgroundMusic() {
-        backgroundMusic.stop();
+        if (Options.MUSIC_ENABLED) {
+            backgroundMusic.stop();
+        }
     }
 
 }
