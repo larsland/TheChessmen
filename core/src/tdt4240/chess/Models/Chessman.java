@@ -38,17 +38,16 @@ public class Chessman extends Actor {
     public ArrayList<Tuple> getAttackMoves() {
         return this.attackMoves;
     }
+
     public void setLegalMoves(ArrayList<Tuple> moves) {
         this.legalMoves = moves;
     }
 
-
-
-
-
-
-
-
+    public void attackMoves() {
+    }
+    public Color getChessmanColor() {
+        return this.color;
+    }
 
 
 }

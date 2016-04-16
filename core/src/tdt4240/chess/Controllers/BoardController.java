@@ -9,6 +9,7 @@ import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.Chessmen.Direction;
 import tdt4240.chess.Models.Color;
 import tdt4240.chess.Models.Tile;
+import tdt4240.chess.Utility.Tuple;
 
 public class BoardController extends ClickListener {
 
@@ -32,6 +33,39 @@ public class BoardController extends ClickListener {
     public void clicked(InputEvent event, float x, float y) {
         Actor target = event.getTarget();
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
+        if (selectedChessman.size() != 0) {
+            if (selectedChessman.get(0).getChessmanColor() == turn) {
+                //moveChessman(selectedChessman.get(0), selectedTile, false);
+                if (board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()) == null) {
+                    moveChessman(selectedChessman.get(0), selectedTile, false);
+                    turn = turn.opposite();
+                    removeHighlightedTiles(highlightedTiles);
+                } else {
+                    if (highlightAttackMoves.contains(selectedTile)) {
+                        moveChessman(selectedChessman.get(0), selectedTile, true);
+                        turn = turn.opposite();
+                        removeHighlightedTiles(highlightedTiles);
+                    }
+                }
+                selectedChessman.remove(0);
+            }
+        } else if (board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()) != null) {
+            selectedChessman.add(board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()));
+            highlightMoves(selectedChessman.get(0));
+        }
+        else {
+            if (selectedChessman.size() != 0) {
+                selectedChessman.remove(0);
+            }
+            removeHighlightedTiles(highlightedTiles);
+            removeHighlightedTiles(highlightAttackMoves);
+        }
+    }
+
+        /*
+        if (board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()).getChessmanColor() == turn) {
+            System.out.println("loli");
+        }
 
         if (!highlightAttackMoves.isEmpty()) {
             removeHighlightedTiles(highlightAttackMoves);
@@ -59,11 +93,6 @@ public class BoardController extends ClickListener {
         selectedTiles.get(0).selected = true;
 
         if (target.getClass().getSuperclass().equals(Chessman.class)) {
-
-            if(highlightAttackMoves.isEmpty()) {
-                highlightAttackMoves((Chessman) target);
-            }
-
             if (selectedChessman.isEmpty()) {
                 selectedChessman.add((Chessman) target);
             }
@@ -71,6 +100,16 @@ public class BoardController extends ClickListener {
                 selectedChessman.clear();
                 selectedChessman.add((Chessman) target);
             }
+            highlightMoves((Chessman) target);
+            /*
+            if(highlightAttackMoves.isEmpty()) {
+                highlightAttackMoves((Chessman) target);
+            }
+
+            if (selectedChessman.isEmpty()) {
+                selectedChessman.add((Chessman) target);
+            }
+
 
             if (highlightedTiles.isEmpty()) {
                 highlightLegalMoves((Chessman) target);
@@ -79,40 +118,39 @@ public class BoardController extends ClickListener {
                 removeHighlightedTiles(highlightedTiles);
                 highlightLegalMoves((Chessman) target);
             }
-        }
-    }
 
-    public void highlightLegalMoves(Chessman chessman) {
+        }
+
+    }
+    */
+    public void highlightMoves(Chessman chessman) {
         for (int i = 0; i < chessman.getLegalMoves().size(); i++) {
+
             Tile tile = null;
             try {
                 tile = board.getTileAt((int) chessman.getX() + chessman.getLegalMoves().get(i).getX(), (int) chessman.getY() + chessman.getLegalMoves().get(i).getY());
-                if (checkValidMoves(chessman, tile)) {
-                    tile.highlighted = true;
-                    highlightedTiles.add(tile);
+                if (chessman.getAttackMoves().size() == 0) {
+                    highlightMove(chessman, tile, true);
+                } else {
+                    highlightMove(chessman, tile, false);
                 }
             }
             catch (ArrayIndexOutOfBoundsException e) {
 
             }
         }
-    }
-
-    public void highlightAttackMoves(Chessman chessman) {
         for (int i = 0; i < chessman.getAttackMoves().size(); i++) {
             Tile tile = null;
             try {
                 tile = board.getTileAt((int) chessman.getX() + chessman.getAttackMoves().get(i).getX(), (int) chessman.getY() + chessman.getAttackMoves().get(i).getY());
-                if (!checkValidMoves(chessman, tile)) {
-                    tile.attackable = true;
-                    highlightAttackMoves.add(tile);
-                }
+                highlightMove(chessman, tile, true);
             }
             catch (ArrayIndexOutOfBoundsException e) {
 
             }
 
         }
+
     }
 
     public void removeHighlightedTiles(ArrayList<Tile> list) {
@@ -138,79 +176,118 @@ public class BoardController extends ClickListener {
 
     }
 
-    public boolean checkValidMoves(Chessman chessman, Tile tile) {
+    public void highlightMove(Chessman chessman, Tile tile, boolean highlightAttack) {
         if (tile != null) {
             Direction direction = getMoveDirection(chessman, tile);
-
-            if (board.getChessmanAt((int) tile.getX(), (int) tile.getY()) != null) {
-                return false;
-            }
+            //System.out.println(direction);
             switch (direction) {
                 case NORTH:
                     for (int x = (int) chessman.getY() + 1; x <= tile.getY(); x++) {
                         if (board.getChessmanAt((int) chessman.getX(), x) != null) {
-                            return false;
+                            if (highlightAttack && board.getChessmanAt((int) chessman.getX(), x).getChessmanColor() != chessman.getChessmanColor()) {
+                                board.getTileAt((int) chessman.getX(), x).attackable = true;
+                                highlightAttackMoves.add(tile);
+                            }
+                            return;
                         }
                     }
                     break;
                 case SOUTH:
                     for (int x = (int) chessman.getY() - 1; x >= tile.getY(); x--) {
                         if (board.getChessmanAt((int) chessman.getX(), x) != null) {
-                            return false;
+                            if (highlightAttack && board.getChessmanAt((int) chessman.getX(), x).getChessmanColor() != chessman.getChessmanColor()) {
+                                board.getTileAt((int) chessman.getX(), x).attackable = true;
+                                highlightAttackMoves.add(tile);
+                            }
                         }
                     }
                     break;
                 case WEST:
                     for (int x = (int) chessman.getX() - 1; x >= tile.getX(); x--) {
                         if (board.getChessmanAt(x, (int) chessman.getY()) != null) {
-                            return false;
+                            if (highlightAttack && board.getChessmanAt(x, (int) chessman.getY()).getChessmanColor() != chessman.getChessmanColor()) {
+                                board.getTileAt(x, (int) chessman.getY()).attackable = true;
+                                highlightAttackMoves.add(tile);
+                            }
+                            return;
                         }
                     }
                     break;
                 case EAST:
                     for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
                         if (board.getChessmanAt(x, (int) chessman.getY()) != null) {
-                            return false;
+                            if (highlightAttack && board.getChessmanAt(x, (int) chessman.getY()).getChessmanColor() != chessman.getChessmanColor()) {
+                                board.getTileAt(x, (int) chessman.getY()).attackable = true;
+                                highlightAttackMoves.add(tile);
+                            }
+                            return;
                         }
                     }
                     break;
                 case NORTHEAST:
                     for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
                         if (board.getChessmanAt(x, (int) (chessman.getY() + (x - chessman.getX()))) != null) {
-                            return false;
+                            if (highlightAttack && board.getChessmanAt(x, (int) (chessman.getY() + (x - chessman.getX()))).getChessmanColor() != chessman.getChessmanColor()) {
+                                board.getTileAt(x, (int) (chessman.getY() + (x - chessman.getX()))).attackable = true;
+                                highlightAttackMoves.add(tile);
+                            }
+                            return;
                         }
                     }
                     break;
                 case SOUTHWEST:
                     for (int x = (int) chessman.getX() - 1; x >= tile.getX(); x--) {
                         if (board.getChessmanAt(x, (int) (chessman.getY() - (chessman.getX() - x))) != null) {
-                            return false;
+                            if (highlightAttack && board.getChessmanAt(x, (int) (chessman.getY() - (chessman.getX() - x))).getChessmanColor() != chessman.getChessmanColor()) {
+                                board.getTileAt(x, (int) (chessman.getY() - (chessman.getX() - x))).attackable = true;
+                                highlightAttackMoves.add(tile);
+                            }
+                            return;
                         }
                     }
                     break;
                 case NORTHWEST:
                     for (int y = (int) chessman.getY() + 1; y <= tile.getY(); y++) {
                         if (board.getChessmanAt((int) (chessman.getY() + (chessman.getX() - y)), y) != null) {
-                            return false;
+                            if (highlightAttack && board.getChessmanAt((int) (chessman.getY() + (chessman.getX() - y)), y).getChessmanColor() != chessman.getChessmanColor()) {
+                                board.getTileAt((int) (chessman.getY() + (chessman.getX() - y)), y).attackable = true;
+                                highlightAttackMoves.add(tile);
+                            }
+                            return;
                         }
                     }
                     break;
                 case SOUTHEAST:
                     for (int x = (int) chessman.getX() + 1; x <= tile.getX(); x++) {
                         if (board.getChessmanAt(x, (int) (chessman.getY() + (chessman.getX() - x))) != null) {
-                            return false;
+                            if (highlightAttack && board.getChessmanAt(x, (int) (chessman.getY() + (chessman.getX() - x))).getChessmanColor() != chessman.getChessmanColor()) {
+                                board.getTileAt(x, (int) (chessman.getY() + (chessman.getX() - x))).attackable = true;
+                                highlightAttackMoves.add(tile);
+                            }
+                            return;
                         }
                     }
                     break;
                 case UNDEFINED:
+                    if (board.getChessmanAt((int) tile.getX(), (int) tile.getY()) != null) {
+                        if (highlightAttack && board.getChessmanAt((int) tile.getX(), (int) tile.getY()).getChessmanColor() != chessman.getChessmanColor()) {
+                            tile.attackable = true;
+                            highlightAttackMoves.add(tile);
+                        }
+                        return;
+                    }
                     break;
-                    //
                 default:
                     break;
             }
-            return true;
+            for (Tuple t: chessman.getAttackMoves()) {
+                if (t.equals(new Tuple((int) (tile.getX() - chessman.getX()), (int) (tile.getY() - chessman.getY())))) {
+                    return;
+                }
+            }
+            tile.highlighted = true;
+            highlightedTiles.add(tile);
         }
-        return false;
     }
 
     private Direction getMoveDirection(Chessman chessman, Tile tile) {
