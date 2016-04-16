@@ -33,12 +33,16 @@ public class BoardController extends ClickListener {
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
         if (selectedChessman.size() != 0) {
             if (selectedChessman.get(0).getChessmanColor() == turn) {
-                moveChessman(selectedChessman.get(0), selectedTile, false);
+                //moveChessman(selectedChessman.get(0), selectedTile, false);
                 if (board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()) == null) {
                     moveChessman(selectedChessman.get(0), selectedTile, false);
+                    turn = turn.opposite();
+                    removeHighlightedTiles(highlightedTiles);
                 } else {
                     if (highlightAttackMoves.contains(selectedTile)) {
                         moveChessman(selectedChessman.get(0), selectedTile, true);
+                        turn = turn.opposite();
+                        removeHighlightedTiles(highlightedTiles);
                     }
                 }
                 selectedChessman.remove(0);
@@ -46,6 +50,13 @@ public class BoardController extends ClickListener {
         } else if (board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()) != null) {
             selectedChessman.add(board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()));
             highlightMoves(selectedChessman.get(0));
+        }
+        else {
+            if (selectedChessman.size() != 0) {
+                selectedChessman.remove(0);
+            }
+            removeHighlightedTiles(highlightedTiles);
+            removeHighlightedTiles(highlightAttackMoves);
         }
     }
 
