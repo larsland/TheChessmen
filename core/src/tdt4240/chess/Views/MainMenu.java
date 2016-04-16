@@ -118,6 +118,5 @@ public class MainMenu implements Screen {
     @Override
     public void dispose() {
         this.stage.dispose();
-
     }
 }
