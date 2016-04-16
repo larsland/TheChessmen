@@ -18,7 +18,8 @@ public class ChessmanController {
             }
             if((chessman.getY() == 7) || (chessman.getY() == 0)){
                 ArrayList<Tuple> newMoves = new ArrayList<Tuple>();
-                for (int i = 1; i < 9; i++){
+                ArrayList<Tuple> newAttackMoves = new ArrayList<Tuple>();
+                for (int i = 1; i < 9; i++) {
                     newMoves.add(new Tuple(i, i));
                     newMoves.add(new Tuple(-i, -i));
                     newMoves.add(new Tuple(i, -i));
@@ -29,10 +30,11 @@ public class ChessmanController {
                     newMoves.add(new Tuple(0, -i));
                 }
                 chessman.setLegalMoves(newMoves);
+                chessman.setAttackMoves(newAttackMoves);
                 if(chessman.getChessmanColor() == Color.WHITE){
-                    chessman.setSprite(6);
+                    chessman.setSprite(6, 4);
                 }else{
-                    chessman.setSprite(1);
+                    chessman.setSprite(0, 4);
                 }
             }
         }
