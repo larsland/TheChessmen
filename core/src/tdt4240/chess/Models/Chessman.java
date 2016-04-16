@@ -41,15 +41,9 @@ public class Chessman extends Actor {
 
     public void moved() {}
     public void attackMoves() {
-
     }
-
-
-
-
-
-
-
-
+    public Color getChessmanColor() {
+        return this.color;
+    }
 
 }
