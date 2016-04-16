@@ -55,8 +55,12 @@ public class MainMenu implements Screen {
                 game.setScreen(new GameScreen(game));
             }
         });
-
         optionsBtn = new TextButton("Options", btnStyle);
+        optionsBtn.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new OptionsScreen());
+            }
+        });
         menu.addActor(startBtn);
         menu.addActor(optionsBtn);
         menu.setTransform(true);
@@ -80,7 +84,7 @@ public class MainMenu implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.batch.draw(backgroundImage, 0, 0, 800, 1280);
+        game.batch.draw(backgroundImage, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         game.batch.end();
         this.stage.draw();
 

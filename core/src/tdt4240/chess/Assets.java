@@ -36,6 +36,9 @@ public class Assets {
         moveChessmanSound = Gdx.audio.newSound(Gdx.files.internal("moveChessmanSound.mp3"));
         backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("dankTune.mp3"));
     }
+    public static void loadFonts() {
+        
+    }
 
     public static void moveChessman() {
         moveChessmanSound.play(1.0f);

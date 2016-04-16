@@ -1,0 +1,5 @@
+{
+	com.badlogic.gdx.graphics.g2d.BitmapFont: {
+		default-font: {file: PressStart2P.ttf }
+	}
+}
