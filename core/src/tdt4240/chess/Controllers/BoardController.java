@@ -10,6 +10,7 @@ import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.Chessmen.Direction;
+import tdt4240.chess.Models.Chessmen.King;
 import tdt4240.chess.Models.Color;
 import tdt4240.chess.Models.Tile;
 import tdt4240.chess.Utility.Tuple;
@@ -34,7 +35,6 @@ public class BoardController extends ClickListener {
     public void clicked(InputEvent event, float x, float y) {
         Actor target = event.getTarget();
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
-        System.out.println(turn);
         if (selectedChessman == null) {
             Chessman current = board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY());
             if (current == null) {
@@ -55,9 +55,6 @@ public class BoardController extends ClickListener {
                 if (highlightedTiles.contains(selectedTile)) {
                     moveChessman(selectedChessman, selectedTile, false);
                     turn = turn.opposite();
-                    if (checkWincondition()) {
-                        checkWincondition();
-                    }
                 }
                 selectedChessman = null;
                 removeHighlightedTiles(highlightedTiles);
@@ -65,11 +62,11 @@ public class BoardController extends ClickListener {
             }
             else {
                 if (highlightAttackMoves.contains(selectedTile)) {
+                    if (checkWincondition(selectedTile)) {
+                        System.out.println(board.getTurn() + " wins");
+                    }
                     moveChessman(selectedChessman, selectedTile, true);
                     turn = turn.opposite();
-                    if (checkWincondition()) {
-
-                    }
                 }
                 removeHighlightedTiles(highlightedTiles);
                 removeHighlightedTiles(highlightAttackMoves);
@@ -136,7 +133,6 @@ public class BoardController extends ClickListener {
     public void highlightMove(Chessman chessman, Tile tile, boolean highlightAttack) {
         if (tile != null) {
             Direction direction = getMoveDirection(chessman, tile);
-            //System.out.println(direction);
             switch (direction) {
                 case NORTH:
                     for (int x = (int) chessman.getY() + 1; x <= tile.getY(); x++) {
@@ -282,7 +278,11 @@ public class BoardController extends ClickListener {
         return Direction.UNDEFINED;
     }
 
-    private boolean checkWincondition() {
+    private boolean checkWincondition(Tile tileToCheck) {
+        Chessman c = board.getChessmanAt((int) tileToCheck.getX(), (int) tileToCheck.getY());
+        if (c.getClass().equals(King.class)) {
+            return true;
+        }
         return false;
     }
 } //Class
