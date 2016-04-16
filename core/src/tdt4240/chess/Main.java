@@ -1,10 +1,10 @@
 package tdt4240.chess;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Views.MainMenu;
 
 public class Main extends Game {
@@ -16,7 +16,7 @@ public class Main extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
-		Assets.loadSounds();
+		SoundAssets.loadSounds();
 		this.setScreen(new MainMenu(this));
 	}
 

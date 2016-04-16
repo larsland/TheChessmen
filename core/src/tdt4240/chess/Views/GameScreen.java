@@ -4,9 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,7 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-import tdt4240.chess.Assets;
+import tdt4240.chess.AssetClasses.GraphicsAssets;
+import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Board;
 
@@ -63,12 +61,12 @@ public class GameScreen implements Screen {
         menuBtn.addListener(new ClickListener() {
            public void clicked(InputEvent event, float x, float y) {
                game.setScreen(new MainMenu(game));
-               Assets.stopPlayingBackgroundMusic();
+               SoundAssets.stopPlayingBackgroundMusic();
            }
         });
         btn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                Assets.stopPlayingBackgroundMusic();
+                SoundAssets.stopPlayingBackgroundMusic();
                 game.setScreen(new GameScreen(game));
             }
         });
@@ -94,7 +92,7 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(this.stage);
         this.stage.addActor(board);
         createUi();
-        Assets.playBackgroundMusic();
+        SoundAssets.playBackgroundMusic();
     }
 
     public void render(float delta) {

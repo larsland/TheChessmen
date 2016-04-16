@@ -6,8 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import java.util.ArrayList;
 
-import tdt4240.chess.Assets;
-import tdt4240.chess.Controllers.ChessmanController;
+import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.Utility.Tuple;
 
 public class Chessman extends Actor {
@@ -22,7 +21,7 @@ public class Chessman extends Actor {
         this.color = color;
         imageOffset = type;
         if (this.color.equals(Color.WHITE)) imageOffset +=6;
-        image = Assets.loadChessmenImages()[imageOffset];
+        image = GraphicsAssets.loadChessmenImages()[imageOffset];
     }
 
     @Override

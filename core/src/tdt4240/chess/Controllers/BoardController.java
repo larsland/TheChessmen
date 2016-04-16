@@ -5,7 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.ArrayList;
 
-import tdt4240.chess.Assets;
+import tdt4240.chess.AssetClasses.GraphicsAssets;
+import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.Chessmen.Direction;
@@ -111,7 +112,7 @@ public class BoardController extends ClickListener {
         list.clear();
     }
     public void moveChessman(Chessman chessman, Tile tile, boolean attack) {
-        Assets.moveChessman();
+        SoundAssets.moveChessman();
 
         int oldX = (int) chessman.getX();
         int oldY = (int) chessman.getY();
