@@ -18,7 +18,7 @@ public class BoardController extends ClickListener {
     private final Board board;
     private ArrayList<Tile> selectedTiles;
     private ArrayList<Tile> highlightedTiles;
-    private ArrayList<Chessman> selectedChessman;
+    private Chessman selectedChessman;
     private ArrayList<Tile> highlightAttackMoves;
     private Color turn = Color.BLACK;
     private ChessmanController chessmanController;
@@ -27,7 +27,7 @@ public class BoardController extends ClickListener {
         this.board = board;
         selectedTiles = new ArrayList<Tile>();
         highlightedTiles = new ArrayList<Tile>();
-        selectedChessman = new ArrayList<Chessman>();
+        selectedChessman = null;
         highlightAttackMoves = new ArrayList<Tile>();
         chessmanController = new ChessmanController();
     }
@@ -35,33 +35,41 @@ public class BoardController extends ClickListener {
     public void clicked(InputEvent event, float x, float y) {
         Actor target = event.getTarget();
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
-            
-        if (selectedChessman.size() != 0) {
-            if (selectedChessman.get(0).getChessmanColor() == turn) {
-                //moveChessman(selectedChessman.get(0), selectedTile, false);
-                if (board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()) == null) {
-                    moveChessman(selectedChessman.get(0), selectedTile, false);
-                    turn = turn.opposite();
-                    removeHighlightedTiles(highlightedTiles);
-                } else {
-                    if (highlightAttackMoves.contains(selectedTile)) {
-                        moveChessman(selectedChessman.get(0), selectedTile, true);
-                        turn = turn.opposite();
-                        removeHighlightedTiles(highlightedTiles);
-                    }
-                }
-                selectedChessman.remove(0);
+        System.out.println(turn);
+        System.out.println(selectedTile);
+        if (selectedChessman == null) {
+            Chessman current = board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY());
+            if (current == null) {
+                return;
             }
-        } else if (board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()) != null) {
-            selectedChessman.add(board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()));
-            highlightMoves(selectedChessman.get(0));
+            else if (current.getChessmanColor() == board.getTurn()) {
+                selectedChessman = current;
+                highlightMoves(selectedChessman);
+            }
+            else {
+                removeHighlightedTiles(highlightedTiles);
+                removeHighlightedTiles(highlightAttackMoves);
+            }
         }
         else {
-            if (selectedChessman.size() != 0) {
-                selectedChessman.remove(0);
+            Chessman current = board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY());
+            if (current == null) {
+                if (highlightedTiles.contains(selectedTile)) {
+                    moveChessman(selectedChessman, selectedTile, false);
+                    turn = turn.opposite();
+                }
+                selectedChessman = null;
+                removeHighlightedTiles(highlightedTiles);
+                removeHighlightedTiles(highlightAttackMoves);
             }
-            removeHighlightedTiles(highlightedTiles);
-            removeHighlightedTiles(highlightAttackMoves);
+            else {
+                if (highlightAttackMoves.contains(selectedTile)) {
+                    moveChessman(current, selectedTile, true);
+                    turn = turn.opposite();
+                }
+                removeHighlightedTiles(highlightedTiles);
+                removeHighlightedTiles(highlightAttackMoves);
+            }
         }
     }
 
