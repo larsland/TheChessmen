@@ -36,7 +36,6 @@ public class BoardController extends ClickListener {
         Actor target = event.getTarget();
         Tile selectedTile = board.getTileAt((int) target.getX(), (int) target.getY());
         System.out.println(turn);
-        System.out.println(selectedTile);
         if (selectedChessman == null) {
             Chessman current = board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY());
             if (current == null) {
@@ -64,82 +63,16 @@ public class BoardController extends ClickListener {
             }
             else {
                 if (highlightAttackMoves.contains(selectedTile)) {
-                    moveChessman(current, selectedTile, true);
+                    moveChessman(selectedChessman, selectedTile, true);
                     turn = turn.opposite();
                 }
                 removeHighlightedTiles(highlightedTiles);
                 removeHighlightedTiles(highlightAttackMoves);
+                selectedChessman = null;
             }
         }
     }
 
-        /*
-        if (board.getChessmanAt((int) selectedTile.getX(), (int) selectedTile.getY()).getChessmanColor() == turn) {
-            System.out.println("loli");
-        }
-
-        if (!highlightAttackMoves.isEmpty()) {
-            removeHighlightedTiles(highlightAttackMoves);
-        }
-
-        if (selectedTile.highlighted) {
-            moveChessman(selectedChessman.get(0), selectedTile, false);
-        }
-
-        if (selectedTile.attackable) {
-            moveChessman(selectedChessman.get(0), selectedTile, true);
-        }
-
-        if (!highlightedTiles.isEmpty()) {
-            removeHighlightedTiles(highlightedTiles);
-        }
-
-        if (selectedTiles.isEmpty()) {
-            selectedTiles.add(selectedTile);
-        } else {
-            selectedTiles.get(0).selected = false;
-            selectedTiles.remove(0);
-            selectedTiles.add(selectedTile);
-        }
-        selectedTiles.get(0).selected = true;
-
-        if (target.getClass().getSuperclass().equals(Chessman.class)) {
-            Chessman man = (Chessman) target;
-
-            if(highlightAttackMoves.isEmpty()) {
-                highlightAttackMoves((Chessman) target);
-            }
-
-            if (selectedChessman.isEmpty()) {
-                selectedChessman.add((Chessman) target);
-            }
-            else {
-                selectedChessman.clear();
-                selectedChessman.add((Chessman) target);
-            }
-            highlightMoves((Chessman) target);
-            /*
-            if(highlightAttackMoves.isEmpty()) {
-                highlightAttackMoves((Chessman) target);
-            }
-
-            if (selectedChessman.isEmpty()) {
-                selectedChessman.add((Chessman) target);
-            }
-
-
-            if (highlightedTiles.isEmpty()) {
-                highlightLegalMoves((Chessman) target);
-            }
-            else {
-                removeHighlightedTiles(highlightedTiles);
-                highlightLegalMoves((Chessman) target);
-            }
-
-        }
-
-    }
-    */
     public void highlightMoves(Chessman chessman) {
         for (int i = 0; i < chessman.getLegalMoves().size(); i++) {
 
@@ -218,6 +151,7 @@ public class BoardController extends ClickListener {
                                 board.getTileAt((int) chessman.getX(), x).attackable = true;
                                 highlightAttackMoves.add(tile);
                             }
+                            return;
                         }
                     }
                     break;
