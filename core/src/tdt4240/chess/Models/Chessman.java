@@ -30,6 +30,14 @@ public class Chessman extends Actor {
         batch.draw(image, this.getX(), this.getY(), 1, 1);
     }
 
+    public void setSprite(int offset){
+        this.image = Assets.loadChessmenImages()[offset];
+    }
+
+    public Color getChessmanColor(){
+        return this.color;
+    }
+
 
     public ArrayList<Tuple> getLegalMoves() {
         return this.legalMoves;
