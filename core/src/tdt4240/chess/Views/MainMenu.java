@@ -58,7 +58,7 @@ public class MainMenu implements Screen {
         optionsBtn = new TextButton("Options", btnStyle);
         optionsBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new OptionsScreen());
+                game.setScreen(new OptionsScreen(game));
             }
         });
         menu.addActor(startBtn);
