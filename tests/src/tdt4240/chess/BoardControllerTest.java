@@ -77,6 +77,21 @@ public class BoardControllerTest {
         actor.setY(1);
         boardController.clicked(touchEvent, 5, 1);
 
+        // err...
+        actor.setX(1);
+        actor.setY(1);
+        boardController.clicked(touchEvent, 1, 1);
+        actor.setX(1);
+        actor.setY(3);
+        boardController.clicked(touchEvent, 1, 3);
+        actor.setX(5);
+        actor.setY(1);
+        boardController.clicked(touchEvent, 5, 1);
+        actor.setX(4);
+        actor.setY(0);
+        boardController.clicked(touchEvent, 4, 0);
+
+
         assertTrue(board.getWin() == ChessmanColor.WHITE);
     }
 
