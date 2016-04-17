@@ -29,9 +29,6 @@ public class GameScreen implements Screen {
 
     private final Stage stage = new Stage(new FitViewport(8, 12));
     Table ui;
-    Skin skin;
-    TextureAtlas btnAtlas;
-    TextButton.TextButtonStyle btnStyle;
     TextButton btn;
     TextButton menuBtn;
     Main game;
@@ -47,20 +44,13 @@ public class GameScreen implements Screen {
 
     public void createUi() {
         ui = new Table();
-        skin = new Skin();
         btnGroup = new HorizontalGroup();
         btnGroup.space(5);
         hudGroup = new VerticalGroup();
         hudGroup.space(5);
-        turnLabel = new Label(turn, new Label.LabelStyle(Main.font, Color.ORANGE));
-        btnAtlas = new TextureAtlas(Gdx.files.internal("button.pack"));
-        skin.addRegions(btnAtlas);
-        btnStyle = new TextButton.TextButtonStyle();
-        btnStyle.up = skin.getDrawable("btnUp");
-        btnStyle.down = skin.getDrawable("btnDown");
-        btnStyle.font = Main.font;
-        btn = new TextButton("Reset Game", btnStyle);
-        menuBtn = new TextButton("Main Menu", btnStyle);
+        turnLabel = new Label(turn, GraphicsAssets.secondaryLabelStyle);
+        btn = new TextButton("Reset Game", GraphicsAssets.btnStyle);
+        menuBtn = new TextButton("Main Menu", GraphicsAssets.btnStyle);
         menuBtn.addListener(new ClickListener() {
            public void clicked(InputEvent event, float x, float y) {
                game.setScreen(new MainMenu(game));

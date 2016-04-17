@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+
+import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.ChessmanColor;
 
@@ -24,13 +26,8 @@ public class WinScreen implements Screen {
     private ChessmanColor color;
     String winner;
     Label winnerLabel;
-    Label.LabelStyle labelStyle;
     VerticalGroup btnGroup;
     TextButton menuBtn, replayBtn;
-    TextButton.TextButtonStyle btnStyle;
-    Skin skin;
-    TextureAtlas btnAtlas;
-    BitmapFont font;
 
     public WinScreen(Main game, ChessmanColor color) {
         this.game = game;
@@ -39,21 +36,11 @@ public class WinScreen implements Screen {
     }
 
     public void createScreen() {
-        font = new BitmapFont();
         btnGroup = new VerticalGroup();
-        skin = new Skin();
-        btnAtlas = new TextureAtlas(Gdx.files.internal("button.pack"));
-        skin.addRegions(btnAtlas);
-        btnStyle = new TextButton.TextButtonStyle();
-        btnStyle.up = skin.getDrawable("btnUp");
-        btnStyle.down = skin.getDrawable("btnDown");
-        btnStyle.font = Main.font;
+        winnerLabel = new Label(winner, GraphicsAssets.secondaryLabelStyle);
 
-        labelStyle = new Label.LabelStyle(Main.font, Color.ORANGE);
-        winnerLabel = new Label(winner, labelStyle);
-
-        menuBtn = new TextButton("Main Menu", btnStyle);
-        replayBtn = new TextButton("Play Again", btnStyle);
+        menuBtn = new TextButton("Main Menu", GraphicsAssets.btnStyle);
+        replayBtn = new TextButton("Play Again", GraphicsAssets.btnStyle);
 
         menuBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
