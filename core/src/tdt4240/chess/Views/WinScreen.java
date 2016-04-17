@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
-import tdt4240.chess.Models.ChessmanColor;
+import tdt4240.chess.Utility.ChessmanColor;
 
 public class WinScreen implements Screen {
 

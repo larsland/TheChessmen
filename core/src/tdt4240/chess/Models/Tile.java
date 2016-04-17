@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Tile extends Actor {
 
-    private ChessmanColor chessmanColor;
+    private tdt4240.chess.Utility.ChessmanColor chessmanColor;
     private Texture texture;
     private int x, y;
     public boolean selected;
@@ -22,9 +22,9 @@ public class Tile extends Actor {
         this.y = y;
 
         switch(c) {
-            case 'b': chessmanColor = ChessmanColor.BLACK;
+            case 'b': chessmanColor = tdt4240.chess.Utility.ChessmanColor.BLACK;
                 texture = new Texture(Gdx.files.internal("blackTile.png")); break;
-            case 'w': chessmanColor = ChessmanColor.WHITE;
+            case 'w': chessmanColor = tdt4240.chess.Utility.ChessmanColor.WHITE;
                 texture = new Texture(Gdx.files.internal("whiteTile.png")); break;
         }
 

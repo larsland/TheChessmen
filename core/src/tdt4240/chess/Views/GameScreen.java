@@ -16,7 +16,7 @@ import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Board;
-import tdt4240.chess.Models.ChessmanColor;
+import tdt4240.chess.Utility.ChessmanColor;
 
 public class GameScreen implements Screen {
 
@@ -74,22 +74,21 @@ public class GameScreen implements Screen {
     public void show() {
         SoundAssets.stopAllMusic();
         SoundAssets.playBackgroundMusic();
-        board = new Board();
-        board.setPosition(0, 2);
+        Board.getInstance().setPosition(0, 2);
         setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.input.setInputProcessor(this.stage);
-        this.stage.addActor(board);
+        this.stage.addActor(Board.getInstance());
         createUi();
     }
 
     public void render(float delta) {
         Gdx.gl.glClearColor(.3f, .3f, .4f, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-        this.turnLabel.setText(board.getTurn().name() + "'s Turn");
+        this.turnLabel.setText(Board.getInstance().getTurn().name() + "'s Turn");
         this.stage.draw();
 
-        if (board.getWin() == ChessmanColor.BLACK || board.getWin() == ChessmanColor.WHITE) {
-            game.setScreen(new WinScreen(this.game, board.getWin()));
+        if (Board.getInstance().getWin() == ChessmanColor.BLACK || Board.getInstance().getWin() == ChessmanColor.WHITE) {
+            game.setScreen(new WinScreen(this.game, Board.getInstance().getWin()));
         }
     }
 

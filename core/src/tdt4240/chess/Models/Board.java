@@ -1,6 +1,7 @@
 package tdt4240.chess.Models;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+
 import tdt4240.chess.Controllers.BoardController;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Chessmen.Bishop;
@@ -9,27 +10,33 @@ import tdt4240.chess.Models.Chessmen.Knight;
 import tdt4240.chess.Models.Chessmen.Pawn;
 import tdt4240.chess.Models.Chessmen.Queen;
 import tdt4240.chess.Models.Chessmen.Rock;
+import tdt4240.chess.Utility.ChessmanColor;
 
 public class Board extends Table {
 
     private Tile[][] tiles;
     private Chessman[][] chessmen;
+
     private ChessmanColor turn = ChessmanColor.BLACK;
     private ChessmanColor win = null;
     BoardController boardController;
 
-    private int size = 8;
+    private static Board instance = null;
 
-    public Board() {
-        this.setBounds(0, 0, Main.UWIDTH, Main.UWIDTH);
-        this.setClip(true);
-        boardController = new BoardController(this);
-        this.addListener(boardController);
+    public static Board getInstance() {
+        if (instance == null) {
+            instance = new Board();
+            getInstance().setBounds(0, 0, Main.UWIDTH, Main.UWIDTH);
+            getInstance().setClip(true);
 
-        tiles = new Tile[8][8];
-        chessmen = new Chessman[8][8];
-        addTiles();
-        addChessmen();
+            getInstance().tiles = new Tile[8][8];
+            getInstance().chessmen = new Chessman[8][8];
+            getInstance().addListener(new BoardController(getInstance()));
+        }
+        return instance;
+    }
+
+    private Board() {
     }
     public void setWin(ChessmanColor chessmanColor) {
         win = chessmanColor;
@@ -43,35 +50,8 @@ public class Board extends Table {
     public Chessman getChessmanAt(int x, int y) { return this.chessmen[x][y]; }
     public BoardController getController() { return this.boardController; }
 
-    public void addTiles() {
-        char lastTile = 'w';
-
-        for (int i = 0; i < size; i++) {
-            if (lastTile == 'w') {
-                lastTile = 'b';
-            }
-            else if (lastTile == 'b') {
-                lastTile = 'w';
-            }
-            for (int j = 0; j < size; j++) {
-
-                if (lastTile == 'w') {
-                    tiles[i][j] = new Tile('b', i, j);
-                    lastTile = 'b';
-                }
-                else if (lastTile == 'b') {
-                    tiles[i][j] = new Tile('w', i, j);
-                    lastTile = 'w';
-                }
-
-                this.addActor(this.tiles[i][j]);
-
-            }
-        }
-    }
-
     public void addChessmen() {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < 8; i++) {
             this.addChessman(new Pawn(i, 1, ChessmanColor.BLACK));
             this.addChessman(new Pawn(i, 6, ChessmanColor.WHITE));
         }
@@ -115,6 +95,10 @@ public class Board extends Table {
         this.chessmen[x][y] = null;
 
     }
+    public void addTile(Tile tile) {
+        tiles[(int) tile.getX()][(int) tile.getY()] = tile;
+        this.addActor(tile);
+    }
 
     public void addChessman(Chessman man) {
         this.addActor(man);
@@ -125,19 +109,10 @@ public class Board extends Table {
         return this.tiles;
     }
 
-    public ChessmanColor getTurn() {
+    public tdt4240.chess.Utility.ChessmanColor getTurn() {
         return this.turn;
     }
-    public void nextTurn() {
-        if (turn.equals(ChessmanColor.BLACK)) {
-            turn = ChessmanColor.WHITE;
-        }
-        else if (turn.equals(ChessmanColor.WHITE)) {
-            turn = ChessmanColor.BLACK;
-        }
+    public void setTurn(tdt4240.chess.Utility.ChessmanColor turn) {
+        this.turn = turn;
     }
-
-
-
-
 }
