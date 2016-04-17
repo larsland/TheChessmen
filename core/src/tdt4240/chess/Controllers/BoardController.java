@@ -11,6 +11,8 @@ import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.ChessmanColor;
 import tdt4240.chess.Models.Chessmen.Direction;
 import tdt4240.chess.Models.Chessmen.King;
+import tdt4240.chess.Models.Options;
+import tdt4240.chess.Models.RegularChess;
 import tdt4240.chess.Models.Tile;
 import tdt4240.chess.Utility.Tuple;
 
@@ -29,6 +31,7 @@ public class BoardController extends ClickListener {
         selectedChessman = null;
         highlightAttackMoves = new ArrayList<Tile>();
         chessmanController = new ChessmanController();
+        this.populateBoard();
     }
 
     public void clicked(InputEvent event, float x, float y) {
@@ -100,9 +103,17 @@ public class BoardController extends ClickListener {
             catch (ArrayIndexOutOfBoundsException e) {
 
             }
-
         }
+    }
 
+    public void populateBoard(){
+        ArrayList<Chessman> men = RegularChess.getChessmen();
+        switch(Options.GAME_MODE) {
+            case(0):
+                for(Chessman man: men){
+                    board.addChessman(man);
+                }
+        }
     }
 
     public void removeHighlightedTiles(ArrayList<Tile> list) {
