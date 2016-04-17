@@ -63,7 +63,6 @@ public class BoardController extends ClickListener {
                 if (highlightAttackMoves.contains(selectedTile)) {
                     if (checkWincondition(selectedTile)) {
                         board.setWin(board.getTurn());
-                        System.out.println(board.getTurn() + " wins");
                     }
                     moveChessman(selectedChessman, selectedTile, true);
                     turn = turn.opposite();
