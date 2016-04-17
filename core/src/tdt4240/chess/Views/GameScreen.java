@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -20,6 +22,7 @@ import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Board;
+import tdt4240.chess.Models.ChessmanColor;
 
 
 public class GameScreen implements Screen {
@@ -100,6 +103,10 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
         this.turnLabel.setText(board.getTurn().name() + "'s Turn");
         this.stage.draw();
+
+        if (board.getWin() == ChessmanColor.BLACK || board.getWin() == ChessmanColor.WHITE) {
+            game.setScreen(new WinScreen(this.game, board.getWin()));
+        }
     }
 
     @Override

@@ -5,12 +5,21 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+
+import tdt4240.chess.Main;
 
 public class GraphicsAssets {
 
-    public static Skin skin;
-    public static TextureAtlas gameAtlas;
+    private static TextureAtlas btnAtlas = new TextureAtlas(Gdx.files.internal("button.pack"));
+    private static Skin skin = new Skin(btnAtlas);
+
+    public static TextButton.TextButtonStyle btnStyle = new TextButton.TextButtonStyle(
+        skin.getDrawable("btnUp"), skin.getDrawable("btnDown"), skin.getDrawable("btnDown"), Main.font
+    );
+
 
 
     public static TextureRegion[] loadChessmenImages() {
