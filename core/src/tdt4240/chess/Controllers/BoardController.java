@@ -63,7 +63,6 @@ public class BoardController extends ClickListener {
                 if (highlightAttackMoves.contains(selectedTile)) {
                     if (isKingTile(selectedTile)) {
                         board.setWin(board.getTurn());
-                        System.out.println(board.getTurn() + " wins");
                     }
                     moveChessman(selectedChessman, selectedTile, true);
                     turn = turn.opposite();
@@ -113,8 +112,6 @@ public class BoardController extends ClickListener {
         list.clear();
     }
     public void moveChessman(Chessman chessman, Tile tile, boolean attack) {
-        SoundAssets.moveChessman();
-
         int oldX = (int) chessman.getX();
         int oldY = (int) chessman.getY();
 
@@ -123,11 +120,14 @@ public class BoardController extends ClickListener {
         chessmanController.moved(chessman);
 
         if (attack) {
+            SoundAssets.playAttackChessmanSound();
             board.removeChessmanAt((int) chessman.getX(), (int) chessman.getY());
+        }
+        else {
+            SoundAssets.playMoveChessmanSound();
         }
         board.updateChessmenPositions(oldX, oldY, (int) chessman.getX(), (int) chessman.getY());
         board.nextTurn();
-
     }
 
     public void highlightMove(Chessman chessman, Tile tile, boolean highlightAttack) {

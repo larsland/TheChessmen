@@ -14,6 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+
+import tdt4240.chess.AssetClasses.GraphicsAssets;
+import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
 
 public class MainMenu implements Screen {
@@ -24,10 +27,6 @@ public class MainMenu implements Screen {
     VerticalGroup menu;
     TextButton startBtn;
     TextButton optionsBtn;
-    BitmapFont font;
-    Skin skin;
-    TextureAtlas btnAtlas;
-    TextButton.TextButtonStyle btnStyle;
     Texture backgroundImage;
     Sprite sprite;
 
@@ -40,22 +39,13 @@ public class MainMenu implements Screen {
 
     public void createMenu() {
         menu = new VerticalGroup();
-        skin = new Skin();
-        font = new BitmapFont();
-        btnAtlas = new TextureAtlas(Gdx.files.internal("button.pack"));
-        skin.addRegions(btnAtlas);
-        btnStyle = new TextButton.TextButtonStyle();
-        btnStyle.up = skin.getDrawable("btnUp");
-        btnStyle.down = skin.getDrawable("btnDown");
-        btnStyle.font = font;
-
-        startBtn = new TextButton("Start Game", btnStyle);
+        startBtn = new TextButton("Start Game", GraphicsAssets.btnStyle);
         startBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new GameScreen(game));
             }
         });
-        optionsBtn = new TextButton("Options", btnStyle);
+        optionsBtn = new TextButton("Options", GraphicsAssets.btnStyle);
         optionsBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new OptionsScreen(game));
@@ -73,6 +63,8 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
+        SoundAssets.stopAllMusic();
+        SoundAssets.playMenuMusic();
         setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.input.setInputProcessor(this.stage);
         createMenu();
