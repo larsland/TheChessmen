@@ -27,7 +27,7 @@ public class GraphicsAssets {
     );
 
     // Defining label styles
-    public static Label.LabelStyle mainLabelStyle = new Label.LabelStyle(Main.font, Color.BLACK);
+    public static Label.LabelStyle mainLabelStyle = new Label.LabelStyle(gameFont, Color.BLACK);
     public static Label.LabelStyle secondaryLabelStyle = new Label.LabelStyle(gameFont, Color.ORANGE);
 
     // Loading the texture region containing all chessmen images

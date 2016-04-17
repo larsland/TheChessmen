@@ -11,12 +11,14 @@ public class SoundAssets {
     public static Sound backgroundMusic;
     public static Sound hitmarkerSound;
     public static Sound menuMusic;
+    public static Sound victorySound;
 
     public static void loadSounds() {
         moveChessmanSound = Gdx.audio.newSound(Gdx.files.internal("sounds/moveChessmanSound.mp3"));
         backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("sounds/dankTune.mp3"));
         hitmarkerSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hitmarker.wav"));
         menuMusic = Gdx.audio.newSound(Gdx.files.internal("sounds/menuMusic.mp3"));
+        victorySound = Gdx.audio.newSound(Gdx.files.internal("sounds/victorySound.mp3"));
     }
 
     public static void playMoveChessmanSound() {
@@ -51,6 +53,10 @@ public class SoundAssets {
     public static void stopAllMusic() {
         menuMusic.stop();
         backgroundMusic.stop();
+    }
+
+    public static void playVictorySound() {
+        victorySound.play(1.0f);
     }
 
 }
