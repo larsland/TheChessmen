@@ -15,6 +15,7 @@ public class Board extends Table {
     private Tile[][] tiles;
     private Chessman[][] chessmen;
     private Color turn = Color.BLACK;
+    private Color win = null;
 
     private int size = 8;
 
@@ -28,7 +29,12 @@ public class Board extends Table {
         addTiles();
         addChessmen();
     }
-
+    public void setWin(Color color) {
+        win = color;
+    }
+    public Color getWin() {
+        return win;
+    }
     public Tile getTileAt(int x, int y) {
         return this.tiles[x][y];
     }
