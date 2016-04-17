@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -20,15 +22,13 @@ import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Board;
+import tdt4240.chess.Models.ChessmanColor;
 
 
 public class GameScreen implements Screen {
 
     private final Stage stage = new Stage(new FitViewport(8, 12));
     Table ui;
-    Skin skin;
-    TextureAtlas btnAtlas;
-    TextButton.TextButtonStyle btnStyle;
     TextButton btn;
     TextButton menuBtn;
     Main game;
@@ -44,20 +44,13 @@ public class GameScreen implements Screen {
 
     public void createUi() {
         ui = new Table();
-        skin = new Skin();
         btnGroup = new HorizontalGroup();
         btnGroup.space(5);
         hudGroup = new VerticalGroup();
         hudGroup.space(5);
-        turnLabel = new Label(turn, new Label.LabelStyle(Main.font, Color.ORANGE));
-        btnAtlas = new TextureAtlas(Gdx.files.internal("button.pack"));
-        skin.addRegions(btnAtlas);
-        btnStyle = new TextButton.TextButtonStyle();
-        btnStyle.up = skin.getDrawable("btnUp");
-        btnStyle.down = skin.getDrawable("btnDown");
-        btnStyle.font = Main.font;
-        btn = new TextButton("Reset Game", btnStyle);
-        menuBtn = new TextButton("Main Menu", btnStyle);
+        turnLabel = new Label(turn, GraphicsAssets.secondaryLabelStyle);
+        btn = new TextButton("Reset Game", GraphicsAssets.btnStyle);
+        menuBtn = new TextButton("Main Menu", GraphicsAssets.btnStyle);
         menuBtn.addListener(new ClickListener() {
            public void clicked(InputEvent event, float x, float y) {
                game.setScreen(new MainMenu(game));
@@ -100,6 +93,10 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
         this.turnLabel.setText(board.getTurn().name() + "'s Turn");
         this.stage.draw();
+
+        if (board.getWin() == ChessmanColor.BLACK || board.getWin() == ChessmanColor.WHITE) {
+            game.setScreen(new WinScreen(this.game, board.getWin()));
+        }
     }
 
     @Override

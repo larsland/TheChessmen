@@ -30,6 +30,10 @@ public class Tile extends Actor {
 
     }
 
+    public Texture getTexture() {
+        return this.texture;
+    }
+
 
     @Override
     public void draw(Batch batch, float parentAlpha) {

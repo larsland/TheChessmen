@@ -21,7 +21,7 @@ public class Chessman extends Actor {
         this.chessmanColor = chessmanColor;
         imageOffset = type;
         if (this.chessmanColor.equals(ChessmanColor.WHITE)) imageOffset +=6;
-        image = GraphicsAssets.loadChessmenImages()[imageOffset];
+        image = GraphicsAssets.chessmenCollection[imageOffset];
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Chessman extends Actor {
     }
 
     public void setSprite(int offset, int type){
-        this.image = GraphicsAssets.loadChessmenImages()[offset + type];
+        this.image = GraphicsAssets.chessmenCollection[offset + type];
     }
 
     public ChessmanColor getChessmanColor(){
