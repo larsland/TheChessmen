@@ -3,8 +3,8 @@ package tdt4240.chess.Controllers;
 import java.util.ArrayList;
 
 import tdt4240.chess.Models.Chessman;
+import tdt4240.chess.Models.ChessmanColor;
 import tdt4240.chess.Models.Chessmen.Pawn;
-import tdt4240.chess.Models.Color;
 import tdt4240.chess.Utility.Tuple;
 
 public class ChessmanController {
@@ -31,7 +31,7 @@ public class ChessmanController {
                 }
                 chessman.setLegalMoves(newMoves);
                 chessman.setAttackMoves(newAttackMoves);
-                if(chessman.getChessmanColor() == Color.WHITE){
+                if(chessman.getChessmanColor() == ChessmanColor.WHITE){
                     chessman.setSprite(6, 4);
                 }else{
                     chessman.setSprite(0, 4);
