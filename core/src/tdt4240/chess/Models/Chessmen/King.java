@@ -2,7 +2,7 @@ package tdt4240.chess.Models.Chessmen;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import tdt4240.chess.Models.Chessman;
-import tdt4240.chess.Models.ChessmanColor;
+import tdt4240.chess.Utility.ChessmanColor;
 import tdt4240.chess.Utility.Tuple;
 
 public class King extends Chessman {

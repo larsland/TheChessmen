@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import tdt4240.chess.Main;
-import tdt4240.chess.Models.Options;
+import tdt4240.chess.Utility.Options;
 
 public class OptionsScreen implements Screen {
 

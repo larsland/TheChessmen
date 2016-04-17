@@ -1,18 +1,20 @@
-package tdt4240.chess.Models;
+package tdt4240.chess.Utility.RuleBundles;
 
 import java.util.ArrayList;
 
+import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.Chessmen.Bishop;
 import tdt4240.chess.Models.Chessmen.King;
 import tdt4240.chess.Models.Chessmen.Knight;
 import tdt4240.chess.Models.Chessmen.Pawn;
 import tdt4240.chess.Models.Chessmen.Queen;
 import tdt4240.chess.Models.Chessmen.Rock;
+import tdt4240.chess.Utility.ChessmanColor;
 
 /**
  * Created by Fredrik on 17/04/16.
  */
-public class RegularChess implements RuleBundle{
+public class RegularChess implements tdt4240.chess.Utility.RuleBundle {
 
     public static ArrayList<Chessman> getChessmen() {
         ArrayList<Chessman> chessmen = new ArrayList<Chessman>();

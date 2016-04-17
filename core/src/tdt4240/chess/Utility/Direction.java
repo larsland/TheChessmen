@@ -1,4 +1,4 @@
-package tdt4240.chess.Models.Chessmen;
+package tdt4240.chess.Utility;
 
 /**
  * Created by berg on 14/04/16.

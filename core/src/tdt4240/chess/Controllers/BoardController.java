@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
-import tdt4240.chess.Models.ChessmanColor;
-import tdt4240.chess.Models.Chessmen.Direction;
+import tdt4240.chess.Utility.ChessmanColor;
+import tdt4240.chess.Utility.Direction;
 import tdt4240.chess.Models.Chessmen.King;
-import tdt4240.chess.Models.Options;
-import tdt4240.chess.Models.RegularChess;
+import tdt4240.chess.Utility.Options;
+import tdt4240.chess.Utility.RuleBundles.RegularChess;
 import tdt4240.chess.Models.Tile;
 import tdt4240.chess.Utility.Tuple;
 
@@ -31,6 +31,7 @@ public class BoardController extends ClickListener {
         selectedChessman = null;
         highlightAttackMoves = new ArrayList<Tile>();
         chessmanController = new ChessmanController();
+        this.addTiles();
         this.populateBoard();
     }
 
@@ -109,10 +110,35 @@ public class BoardController extends ClickListener {
     public void populateBoard(){
         ArrayList<Chessman> men = RegularChess.getChessmen();
         switch(Options.GAME_MODE) {
+            //Add a new case corresponding to the integer given in options.
             case(0):
                 for(Chessman man: men){
                     board.addChessman(man);
                 }
+        }
+    }
+
+    public void addTiles() {
+        char lastTile = 'w';
+
+        for (int i = 0; i < 8; i++) {
+            if (lastTile == 'w') {
+                lastTile = 'b';
+            }
+            else if (lastTile == 'b') {
+                lastTile = 'w';
+            }
+            for (int j = 0; j < 8; j++) {
+
+                if (lastTile == 'w') {
+                    board.addTile(new Tile('b', i, j));
+                    lastTile = 'b';
+                }
+                else if (lastTile == 'b') {
+                    board.addTile(new Tile('w', i, j));
+                    lastTile = 'w';
+                }
+            }
         }
     }
 
@@ -136,8 +162,8 @@ public class BoardController extends ClickListener {
         if (attack) {
             board.removeChessmanAt((int) chessman.getX(), (int) chessman.getY());
         }
-        board.updateChessmenPossitions(oldX, oldY, (int) chessman.getX(), (int) chessman.getY());
-        board.nextTurn();
+        board.updateChessmenPositions(oldX, oldY, (int) chessman.getX(), (int) chessman.getY());
+        board.setTurn(board.getTurn().opposite());
 
     }
 

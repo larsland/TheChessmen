@@ -7,20 +7,20 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.ArrayList;
 
 import tdt4240.chess.AssetClasses.GraphicsAssets;
-import tdt4240.chess.Utility.Tuple;
+import tdt4240.chess.Utility.*;
 
 public class Chessman extends Actor {
 
-    protected ChessmanColor chessmanColor;
+    protected tdt4240.chess.Utility.ChessmanColor chessmanColor;
     public int imageOffset;
     private TextureRegion image;
     protected ArrayList<Tuple> legalMoves = new ArrayList<Tuple>();
     protected ArrayList<Tuple> attackMoves = new ArrayList<Tuple>();
 
-    public Chessman(ChessmanColor chessmanColor, int type) {
+    public Chessman(tdt4240.chess.Utility.ChessmanColor chessmanColor, int type) {
         this.chessmanColor = chessmanColor;
         imageOffset = type;
-        if (this.chessmanColor.equals(ChessmanColor.WHITE)) imageOffset +=6;
+        if (this.chessmanColor.equals(tdt4240.chess.Utility.ChessmanColor.WHITE)) imageOffset +=6;
         image = GraphicsAssets.loadChessmenImages()[imageOffset];
     }
 
@@ -34,7 +34,7 @@ public class Chessman extends Actor {
         this.image = GraphicsAssets.loadChessmenImages()[offset + type];
     }
 
-    public ChessmanColor getChessmanColor(){
+    public tdt4240.chess.Utility.ChessmanColor getChessmanColor(){
         return this.chessmanColor;
     }
 
