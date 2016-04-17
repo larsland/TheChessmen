@@ -16,13 +16,15 @@ public class Board extends Table {
     private Chessman[][] chessmen;
     private ChessmanColor turn = ChessmanColor.BLACK;
     private ChessmanColor win = null;
+    BoardController boardController;
 
     private int size = 8;
 
     public Board() {
         this.setBounds(0, 0, Main.UWIDTH, Main.UWIDTH);
         this.setClip(true);
-        this.addListener(new BoardController(this));
+        boardController = new BoardController(this);
+        this.addListener(boardController);
 
         tiles = new Tile[8][8];
         chessmen = new Chessman[8][8];
@@ -39,6 +41,7 @@ public class Board extends Table {
         return this.tiles[x][y];
     }
     public Chessman getChessmanAt(int x, int y) { return this.chessmen[x][y]; }
+    public BoardController getController() { return this.boardController; }
 
     public void addTiles() {
         char lastTile = 'w';
@@ -99,7 +102,7 @@ public class Board extends Table {
         this.addChessman(new King(4, 0, ChessmanColor.BLACK));
     }
 
-    public void updateChessmenPossitions(int oldX, int oldY, int x, int y) {
+    public void updateChessmenPositions(int oldX, int oldY, int x, int y) {
         Chessman chessman = this.chessmen[oldX][oldY];
         this.chessmen[x][y] = chessman;
         this.chessmen[oldX][oldY] = null;

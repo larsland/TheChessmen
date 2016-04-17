@@ -1,4 +1,4 @@
-package tdt4240.chess.examples;
+package tdt4240.chess;
 
 import com.badlogic.gdx.graphics.glutils.FileTextureData;
 

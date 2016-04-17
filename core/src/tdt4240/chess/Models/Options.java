@@ -6,7 +6,7 @@ package tdt4240.chess.Models;
 public class Options {
 
     public static boolean MUSIC_ENABLED = true;
-    public static boolean SFX_ENABLED = true;
+    public static boolean SFX_ENABLED = false;
     public static int GAME_MODE = 0;
 
 }
