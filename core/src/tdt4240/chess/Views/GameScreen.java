@@ -96,6 +96,7 @@ public class GameScreen implements Screen {
 
         if (board.getWin() == ChessmanColor.BLACK || board.getWin() == ChessmanColor.WHITE) {
             game.setScreen(new WinScreen(this.game, board.getWin()));
+            SoundAssets.stopPlayingBackgroundMusic();
         }
     }
 
