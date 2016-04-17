@@ -11,16 +11,16 @@ import tdt4240.chess.Utility.*;
 
 public class Chessman extends Actor {
 
-    protected tdt4240.chess.Utility.ChessmanColor chessmanColor;
-    public int imageOffset;
+    protected ChessmanColor chessmanColor;
+    private int imageOffset;
     private TextureRegion image;
     protected ArrayList<Tuple> legalMoves = new ArrayList<Tuple>();
     protected ArrayList<Tuple> attackMoves = new ArrayList<Tuple>();
 
-    public Chessman(tdt4240.chess.Utility.ChessmanColor chessmanColor, int type) {
+    public Chessman(ChessmanColor chessmanColor, int type) {
         this.chessmanColor = chessmanColor;
         imageOffset = type;
-        if (this.chessmanColor.equals(tdt4240.chess.Utility.ChessmanColor.WHITE)) imageOffset +=6;
+        if (this.chessmanColor.equals(ChessmanColor.WHITE)) imageOffset +=6;
         image = GraphicsAssets.loadChessmenImages()[imageOffset];
     }
 
@@ -34,7 +34,7 @@ public class Chessman extends Actor {
         this.image = GraphicsAssets.loadChessmenImages()[offset + type];
     }
 
-    public tdt4240.chess.Utility.ChessmanColor getChessmanColor(){
+    public ChessmanColor getChessmanColor(){
         return this.chessmanColor;
     }
 

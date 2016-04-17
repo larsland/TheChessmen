@@ -10,14 +10,16 @@ import tdt4240.chess.Models.Chessmen.Pawn;
 import tdt4240.chess.Models.Chessmen.Queen;
 import tdt4240.chess.Models.Chessmen.Rock;
 import tdt4240.chess.Utility.ChessmanColor;
+import tdt4240.chess.Utility.RuleBundle;
 
 /**
  * Created by Fredrik on 17/04/16.
  */
-public class RegularChess implements tdt4240.chess.Utility.RuleBundle {
+public class RegularChess implements RuleBundle {
 
-    public static ArrayList<Chessman> getChessmen() {
-        ArrayList<Chessman> chessmen = new ArrayList<Chessman>();
+    ArrayList<Chessman> chessmen = new ArrayList<Chessman>();
+
+    public void instantiateChessmen() {
         for (int i = 0; i < 8; i++) {
             chessmen.add((new Pawn(i, 1, ChessmanColor.BLACK)));
             chessmen.add((new Pawn(i, 6, ChessmanColor.WHITE)));
@@ -47,10 +49,11 @@ public class RegularChess implements tdt4240.chess.Utility.RuleBundle {
         //* Set and add kings. *//*
         chessmen.add((new King(4, 7, ChessmanColor.WHITE)));
         chessmen.add((new King(4, 0, ChessmanColor.BLACK)));
+    }
+    public void instantiateRules() {
+
+    }
+    public ArrayList<Chessman> getChessmen() {
         return chessmen;
     }
-
-
-
-
 }

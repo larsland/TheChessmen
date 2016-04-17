@@ -86,8 +86,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        board = new Board();
-        board.setPosition(0, 2);
+        board = Board.getInstance();
+        Board.getInstance().setPosition(0, 2);
         setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.input.setInputProcessor(this.stage);
         this.stage.addActor(board);
@@ -98,7 +98,7 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(.3f, .3f, .4f, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-        this.turnLabel.setText(board.getTurn().name() + "'s Turn");
+        this.turnLabel.setText(Board.getInstance().getTurn().name() + "'s Turn");
         this.stage.draw();
     }
 

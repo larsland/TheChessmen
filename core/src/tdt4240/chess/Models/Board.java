@@ -4,26 +4,36 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import tdt4240.chess.Controllers.BoardController;
 import tdt4240.chess.Main;
+import tdt4240.chess.Utility.ChessmanColor;
 
 public class Board extends Table {
 
     private Tile[][] tiles;
     private Chessman[][] chessmen;
-    private tdt4240.chess.Utility.ChessmanColor turn = tdt4240.chess.Utility.ChessmanColor.BLACK;
+    private tdt4240.chess.Utility.ChessmanColor turn = ChessmanColor.BLACK;
     private tdt4240.chess.Utility.ChessmanColor win = null;
 
-    public Board() {
-        this.setBounds(0, 0, Main.UWIDTH, Main.UWIDTH);
-        this.setClip(true);
+    private static Board instance = null;
 
-        tiles = new Tile[8][8];
-        chessmen = new Chessman[8][8];
-        this.addListener(new BoardController(this));
+    public static Board getInstance() {
+        if (instance == null) {
+            instance = new Board();
+            getInstance().setBounds(0, 0, Main.UWIDTH, Main.UWIDTH);
+            getInstance().setClip(true);
+
+            getInstance().tiles = new Tile[8][8];
+            getInstance().chessmen = new Chessman[8][8];
+            getInstance().addListener(new BoardController(getInstance()));
+        }
+        return instance;
     }
-    public void setWin(tdt4240.chess.Utility.ChessmanColor chessmanColor) {
+
+    private Board() {
+    }
+    public void setWin(ChessmanColor chessmanColor) {
         win = chessmanColor;
     }
-    public tdt4240.chess.Utility.ChessmanColor getWin() {
+    public ChessmanColor getWin() {
         return win;
     }
     public Tile getTileAt(int x, int y) {
