@@ -16,8 +16,8 @@ sourceSets {
             srcDir '../android/assets'
         }
     }
-    
-    
+
+
 }
 
 eclipse.project {
