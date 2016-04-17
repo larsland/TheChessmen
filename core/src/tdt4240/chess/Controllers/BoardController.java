@@ -5,13 +5,12 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.ArrayList;
 
-import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
+import tdt4240.chess.Models.ChessmanColor;
 import tdt4240.chess.Models.Chessmen.Direction;
 import tdt4240.chess.Models.Chessmen.King;
-import tdt4240.chess.Models.Color;
 import tdt4240.chess.Models.Tile;
 import tdt4240.chess.Utility.Tuple;
 
@@ -21,7 +20,7 @@ public class BoardController extends ClickListener {
     private ArrayList<Tile> highlightedTiles;
     private Chessman selectedChessman;
     private ArrayList<Tile> highlightAttackMoves;
-    private Color turn = Color.BLACK;
+    private ChessmanColor turn = ChessmanColor.BLACK;
     private ChessmanController chessmanController;
 
     public BoardController(Board board) {
@@ -63,6 +62,7 @@ public class BoardController extends ClickListener {
             else {
                 if (highlightAttackMoves.contains(selectedTile)) {
                     if (checkWincondition(selectedTile)) {
+                        board.setWin(board.getTurn());
                         System.out.println(board.getTurn() + " wins");
                     }
                     moveChessman(selectedChessman, selectedTile, true);
