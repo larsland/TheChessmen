@@ -19,7 +19,6 @@ public class WinScreen implements Screen {
     private final Stage stage = new Stage(new FitViewport(8, 10));
     private Main game;
     private ChessmanColor color;
-    String winner;
     Label winnerLabel;
     VerticalGroup btnGroup;
     TextButton menuBtn, replayBtn;
@@ -31,7 +30,7 @@ public class WinScreen implements Screen {
 
     public void createScreen() {
         btnGroup = new VerticalGroup();
-        winnerLabel = new Label(color.name(), GraphicsAssets.secondaryLabelStyle);
+        winnerLabel = new Label(color.name() + " is victorious!", GraphicsAssets.secondaryLabelStyle);
 
         menuBtn = new TextButton("Main Menu", GraphicsAssets.btnStyle);
         replayBtn = new TextButton("Play Again", GraphicsAssets.btnStyle);
@@ -53,7 +52,7 @@ public class WinScreen implements Screen {
         btnGroup.setTransform(true);
         btnGroup.setScale(1 / menuBtn.getHeight());
         btnGroup.setPosition(4, 7);
-
+        btnGroup.space(5);
         this.stage.addActor(btnGroup);
     }
 

@@ -23,6 +23,7 @@ import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.ChessmanColor;
+import tdt4240.chess.Models.Options;
 
 
 public class GameScreen implements Screen {
@@ -79,13 +80,14 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
+        SoundAssets.stopAllMusic();
+        SoundAssets.playBackgroundMusic();
         board = new Board();
         board.setPosition(0, 2);
         setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.input.setInputProcessor(this.stage);
         this.stage.addActor(board);
         createUi();
-        SoundAssets.playBackgroundMusic();
     }
 
     public void render(float delta) {

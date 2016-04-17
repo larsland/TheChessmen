@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import tdt4240.chess.AssetClasses.GraphicsAssets;
+import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Options;
 
@@ -23,18 +25,15 @@ public class OptionsScreen implements Screen {
     TextButton muteSfx;
     TextButton muteMusic;
     TextButton backBtn;
-    Skin skin;
-    TextureAtlas btnAtlas;
-    TextButton.TextButtonStyle btnStyle;
 
     public OptionsScreen(Main game) {
         this.game = game;
     }
 
-
-
     @Override
     public void show() {
+        SoundAssets.stopAllMusic();
+        SoundAssets.playMenuMusic();
         setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.input.setInputProcessor(this.stage);
         createOptions();
@@ -42,16 +41,9 @@ public class OptionsScreen implements Screen {
 
     public void createOptions() {
         btnGroup = new VerticalGroup();
-        btnStyle = new TextButton.TextButtonStyle();
-        btnStyle.font = Main.font;
-        skin = new Skin();
-        btnAtlas = new TextureAtlas(Gdx.files.internal("button.pack"));
-        skin.addRegions(btnAtlas);
-        btnStyle.up = skin.getDrawable("btnUp");
-        btnStyle.down = skin.getDrawable("btnDown");
-        muteSfx = new TextButton("Mute SFX", btnStyle);
-        muteMusic = new TextButton("Mute Music", btnStyle);
-        backBtn = new TextButton("Back", btnStyle);
+        muteSfx = new TextButton("Mute SFX", GraphicsAssets.btnStyle);
+        muteMusic = new TextButton("Mute Music", GraphicsAssets.btnStyle);
+        backBtn = new TextButton("Back", GraphicsAssets.btnStyle);
 
         muteSfx.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -100,6 +92,12 @@ public class OptionsScreen implements Screen {
         }
         else if (!Options.MUSIC_ENABLED) {
             muteMusic.setText("Unmute Music");
+        }
+        if (Options.SFX_ENABLED) {
+            muteSfx.setText("Mute SFX");
+        }
+        else if (!Options.SFX_ENABLED) {
+            muteSfx.setText("Unmute SFX");
         }
         this.stage.draw();
     }

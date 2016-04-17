@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import tdt4240.chess.AssetClasses.GraphicsAssets;
+import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
 
 public class MainMenu implements Screen {
@@ -62,6 +63,8 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
+        SoundAssets.stopAllMusic();
+        SoundAssets.playMenuMusic();
         setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.input.setInputProcessor(this.stage);
         createMenu();

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -14,16 +15,20 @@ import tdt4240.chess.Main;
 
 public class GraphicsAssets {
 
+    // Defining fonts
+    public static BitmapFont gameFont = new BitmapFont();
+    public static BitmapFont btnFont = new BitmapFont();
+
     // Defining the main button skin
     private static TextureAtlas btnAtlas = new TextureAtlas(Gdx.files.internal("button.pack"));
     private static Skin buttonSkin = new Skin(btnAtlas);
     public static TextButton.TextButtonStyle btnStyle = new TextButton.TextButtonStyle(
-        buttonSkin.getDrawable("btnUp"), buttonSkin.getDrawable("btnDown"), buttonSkin.getDrawable("btnDown"), Main.font
+        buttonSkin.getDrawable("btnUp"), buttonSkin.getDrawable("btnDown"), buttonSkin.getDrawable("btnDown"), btnFont
     );
 
     // Defining label styles
     public static Label.LabelStyle mainLabelStyle = new Label.LabelStyle(Main.font, Color.BLACK);
-    public static Label.LabelStyle secondaryLabelStyle = new Label.LabelStyle(Main.font, Color.ORANGE);
+    public static Label.LabelStyle secondaryLabelStyle = new Label.LabelStyle(gameFont, Color.ORANGE);
 
     // Loading the texture region containing all chessmen images
     public static TextureRegion[] chessmenCollection = loadChessmenImages();
@@ -31,6 +36,10 @@ public class GraphicsAssets {
 
 
 
+    public static void loadFonts() {
+        gameFont.getData().setScale((float) 1.7, (float) 1.7);
+        btnFont.getData().setScale((float) 1.3, (float) 1.3);
+    }
 
     private static TextureRegion[] loadChessmenImages() {
         int FRAME_COLS = 6;
