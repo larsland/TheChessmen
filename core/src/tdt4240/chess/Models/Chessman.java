@@ -7,12 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.ArrayList;
 
 import tdt4240.chess.AssetClasses.GraphicsAssets;
-import tdt4240.chess.Utility.Tuple;
+import tdt4240.chess.Utility.*;
 
 public class Chessman extends Actor {
 
     protected ChessmanColor chessmanColor;
-    public int imageOffset;
+    private int imageOffset;
     private TextureRegion image;
     protected ArrayList<Tuple> legalMoves = new ArrayList<Tuple>();
     protected ArrayList<Tuple> attackMoves = new ArrayList<Tuple>();

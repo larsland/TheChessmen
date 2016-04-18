@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 import tdt4240.chess.Controllers.BoardController;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
-import tdt4240.chess.Models.ChessmanColor;
 import tdt4240.chess.Models.Tile;
+import tdt4240.chess.Utility.ChessmanColor;
 
 import static org.junit.Assert.assertTrue;
 
@@ -30,12 +30,14 @@ public class BoardControllerTest {
 
     @Test
     public void boardController_CheckMateTest() {
-        Board board = new Board();
+        Board board = Board.getInstance();
         BoardController boardController = board.getController();
 
         InputEvent touchEvent = new InputEvent();
         Actor actor = new Actor();
         touchEvent.setTarget(actor);
+
+        System.out.println(board);
 
         actor.setX(4);
         actor.setY(1);
