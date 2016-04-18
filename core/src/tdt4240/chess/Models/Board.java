@@ -35,6 +35,9 @@ public class Board extends Table {
         }
         return instance;
     }
+    public static void destroy() {
+        instance = null;
+    }
 
     private Board() {
     }

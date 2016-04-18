@@ -53,6 +53,7 @@ public class GameScreen implements Screen {
         btn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 SoundAssets.stopPlayingBackgroundMusic();
+                Board.getInstance().destroy();
                 game.setScreen(new GameScreen(game));
             }
         });
