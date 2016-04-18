@@ -137,7 +137,18 @@ public class Board extends Table {
         }
     }
 
-
+    @Override
+    public String toString() {
+        String map = "";
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (getChessmanAt(j, i) == null) map += " + ";
+                else map += getChessmanAt(j, i) + " ";
+            }
+            map += "\n";
+        }
+        return map;
+    }
 
 
 }

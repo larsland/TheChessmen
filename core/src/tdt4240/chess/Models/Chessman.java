@@ -53,4 +53,11 @@ public class Chessman extends Actor {
 
     public void attackMoves() {
     }
+
+    @Override
+    public String toString() {
+        int type = (6 + imageOffset) % 6;
+        String color =  chessmanColor == ChessmanColor.WHITE ? "w" : "b";
+        return color + type;
+    }
 }
