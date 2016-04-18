@@ -36,9 +36,7 @@ public class BoardControllerTest {
         InputEvent touchEvent = new InputEvent();
         Actor actor = new Actor();
         touchEvent.setTarget(actor);
-
-        System.out.println(board);
-
+        
         actor.setX(4);
         actor.setY(1);
         boardController.clicked(touchEvent, 4, 1);
