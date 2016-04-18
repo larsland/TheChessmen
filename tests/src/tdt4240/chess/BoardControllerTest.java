@@ -8,8 +8,6 @@ import org.junit.runner.RunWith;
 
 import tdt4240.chess.Controllers.BoardController;
 import tdt4240.chess.Models.Board;
-import tdt4240.chess.Models.Chessman;
-import tdt4240.chess.Models.Tile;
 import tdt4240.chess.Utility.ChessmanColor;
 
 import static org.junit.Assert.assertTrue;
@@ -24,7 +22,7 @@ public class BoardControllerTest {
     /*
     Run a simple game that results in check mate. Assert that game is won.
     Source of game moves: https://www.chess.com/forum/view/fun-with-chess/shortest-games-possible
-    Board is mirrored on all axises compared to the on shown in game.
+    Board is mirrored on all axises compared to the one shown in game.
     Black starts, not white.
      */
 
@@ -36,7 +34,7 @@ public class BoardControllerTest {
         InputEvent touchEvent = new InputEvent();
         Actor actor = new Actor();
         touchEvent.setTarget(actor);
-        
+
         actor.setX(4);
         actor.setY(1);
         boardController.clicked(touchEvent, 4, 1);
@@ -72,7 +70,10 @@ public class BoardControllerTest {
         actor.setY(4);
         boardController.clicked(touchEvent, 4, 4);
 
-        // black has white in check mate now
+        /*
+         Black has white in check mate now.
+         Needs to make a silly move for white and then black can capture the king.
+          */
 
         actor.setX(0);
         actor.setY(6);

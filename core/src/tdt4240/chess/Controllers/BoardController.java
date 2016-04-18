@@ -65,7 +65,7 @@ public class BoardController extends ClickListener {
             }
             else {
                 if (highlightAttackMoves.contains(selectedTile)) {
-                    if (checkWincondition(selectedTile)) {
+                    if (isKingTile(selectedTile)) {
                         Board.getInstance().setWin(Board.getInstance().getTurn());
                         System.out.println(Board.getInstance().getTurn() + " wins");
                     }
@@ -306,7 +306,7 @@ public class BoardController extends ClickListener {
         return Direction.UNDEFINED;
     }
 
-    private boolean checkWincondition(Tile tileToCheck) {
+    private boolean isKingTile(Tile tileToCheck) {
         Chessman c = Board.getInstance().getChessmanAt((int) tileToCheck.getX(), (int) tileToCheck.getY());
         if (c.getClass().equals(King.class)) {
             return true;

@@ -1,6 +1,7 @@
 package tdt4240.chess.Controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Utility.ChessmanColor;
@@ -12,13 +13,13 @@ public class ChessmanController {
     public void moved(Chessman chessman) {
         if (chessman.getClass().equals(Pawn.class)) {
             if (chessman.getLegalMoves().size() == 2) {
-                ArrayList<Tuple> newMoves = chessman.getLegalMoves();
+                List<Tuple> newMoves = chessman.getLegalMoves();
                 newMoves.remove(1);
                 chessman.setLegalMoves(newMoves);
             }
-            if((chessman.getY() == 7) || (chessman.getY() == 0)){
-                ArrayList<Tuple> newMoves = new ArrayList<Tuple>();
-                ArrayList<Tuple> newAttackMoves = new ArrayList<Tuple>();
+            if ((chessman.getY() == 7) || (chessman.getY() == 0)) {
+                List<Tuple> newMoves = new ArrayList<Tuple>();
+                List<Tuple> newAttackMoves = new ArrayList<Tuple>();
                 for (int i = 1; i < 9; i++) {
                     newMoves.add(new Tuple(i, i));
                     newMoves.add(new Tuple(-i, -i));
@@ -31,9 +32,9 @@ public class ChessmanController {
                 }
                 chessman.setLegalMoves(newMoves);
                 chessman.setAttackMoves(newAttackMoves);
-                if(chessman.getChessmanColor() == ChessmanColor.WHITE){
+                if (chessman.getChessmanColor() == ChessmanColor.WHITE){
                     chessman.setSprite(6, 4);
-                }else{
+                } else {
                     chessman.setSprite(0, 4);
                 }
             }

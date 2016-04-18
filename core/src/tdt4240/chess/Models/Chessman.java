@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.Utility.*;
@@ -14,8 +15,8 @@ public class Chessman extends Actor {
     protected ChessmanColor chessmanColor;
     private int imageOffset;
     private TextureRegion image;
-    protected ArrayList<Tuple> legalMoves = new ArrayList<Tuple>();
-    protected ArrayList<Tuple> attackMoves = new ArrayList<Tuple>();
+    protected List<Tuple> legalMoves = new ArrayList<Tuple>();
+    protected List<Tuple> attackMoves = new ArrayList<Tuple>();
 
     public Chessman(ChessmanColor chessmanColor, int type) {
         this.chessmanColor = chessmanColor;
@@ -39,15 +40,15 @@ public class Chessman extends Actor {
     }
 
 
-    public ArrayList<Tuple> getLegalMoves() {
+    public List<Tuple> getLegalMoves() {
         return this.legalMoves;
     }
-    public ArrayList<Tuple> getAttackMoves() {
+    public List<Tuple> getAttackMoves() {
         return this.attackMoves;
     }
 
-    public void setAttackMoves(ArrayList<Tuple> moves) {this.attackMoves = moves;}
-    public void setLegalMoves(ArrayList<Tuple> moves) {
+    public void setAttackMoves(List<Tuple> moves) {this.attackMoves = moves;}
+    public void setLegalMoves(List<Tuple> moves) {
         this.legalMoves = moves;
     }
 
