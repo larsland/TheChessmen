@@ -28,7 +28,6 @@ public class GameScreen implements Screen {
     Main game;
     Label turnLabel;
     String turn;
-    Board board;
     HorizontalGroup btnGroup;
     VerticalGroup hudGroup;
 
@@ -54,7 +53,7 @@ public class GameScreen implements Screen {
         btn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 SoundAssets.stopPlayingBackgroundMusic();
-                Board.getInstance().destroy();
+                Board.getInstance().reset();
                 game.setScreen(new GameScreen(game));
             }
         });
