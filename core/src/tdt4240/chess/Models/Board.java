@@ -96,7 +96,18 @@ public class Board extends Table {
         }
         return men;
     }
-
+    public ArrayList<Tile> getAllEmptyTiles() {
+        ArrayList<Tile> tiles = new ArrayList<Tile>();
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                Chessman c = Board.getInstance().getChessmanAt(x, y);
+                if (c == null) {
+                    tiles.add(getTileAt(x, y));
+                }
+            }
+        }
+        return tiles;
+    }
 
     @Override
     public String toString() {
