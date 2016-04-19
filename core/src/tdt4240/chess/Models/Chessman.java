@@ -7,22 +7,20 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.ArrayList;
 import java.util.List;
 
-import tdt4240.chess.AssetClasses.GraphicsAssets;
-import tdt4240.chess.Utility.*;
+import tdt4240.chess.Utility.ChessmanColor;
+import tdt4240.chess.Utility.StateContext;
+import tdt4240.chess.Utility.Tuple;
 
 public class Chessman extends Actor {
 
     protected ChessmanColor chessmanColor;
-    private int imageOffset;
     private TextureRegion image;
     protected List<Tuple> legalMoves = new ArrayList<Tuple>();
     protected List<Tuple> attackMoves = new ArrayList<Tuple>();
+    protected StateContext context;
 
-    public Chessman(ChessmanColor chessmanColor, int type) {
+    public Chessman(ChessmanColor chessmanColor) {
         this.chessmanColor = chessmanColor;
-        imageOffset = type;
-        if (this.chessmanColor.equals(ChessmanColor.WHITE)) imageOffset +=6;
-        image = GraphicsAssets.chessmenCollection[imageOffset];
     }
 
     @Override
@@ -31,8 +29,10 @@ public class Chessman extends Actor {
         batch.draw(image, this.getX(), this.getY(), 1, 1);
     }
 
-    public void setSprite(int offset, int type){
-        this.image = GraphicsAssets.chessmenCollection[offset + type];
+    public StateContext getContext() { return this.context; }
+
+    public void setSprite(TextureRegion sprite) {
+        this.image = sprite;
     }
 
     public ChessmanColor getChessmanColor(){
@@ -57,8 +57,7 @@ public class Chessman extends Actor {
 
     @Override
     public String toString() {
-        int type = (6 + imageOffset) % 6;
         String color =  chessmanColor == ChessmanColor.WHITE ? "w" : "b";
-        return color + type;
+        return color;
     }
 }

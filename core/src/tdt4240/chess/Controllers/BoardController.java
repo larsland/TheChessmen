@@ -3,19 +3,20 @@ package tdt4240.chess.Controllers;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
 import java.util.ArrayList;
 
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
+import tdt4240.chess.Models.Chessmen.King;
+import tdt4240.chess.Models.Tile;
 import tdt4240.chess.Utility.ChessmanColor;
 import tdt4240.chess.Utility.Direction;
-import tdt4240.chess.Models.Chessmen.King;
 import tdt4240.chess.Utility.Options;
 import tdt4240.chess.Utility.RuleBundle;
 import tdt4240.chess.Utility.RuleBundles.PawnsAreBishops;
 import tdt4240.chess.Utility.RuleBundles.RegularChess;
-import tdt4240.chess.Models.Tile;
 import tdt4240.chess.Utility.Tuple;
 
 public class BoardController extends ClickListener {
@@ -67,7 +68,7 @@ public class BoardController extends ClickListener {
             }
             else {
                 if (highlightAttackMoves.contains(selectedTile)) {
-                    if (checkWincondition(selectedTile)) {
+                    if (isKingTile(selectedTile)) {
                         board.setWin(board.getTurn());
                     }
                     moveChessman(selectedChessman, selectedTile, true);
@@ -307,7 +308,7 @@ public class BoardController extends ClickListener {
         return Direction.UNDEFINED;
     }
 
-    private boolean checkWincondition(Tile tileToCheck) {
+    private boolean isKingTile(Tile tileToCheck) {
         Chessman c = board.getChessmanAt((int) tileToCheck.getX(), (int) tileToCheck.getY());
         if (c.getClass().equals(King.class)) {
             return true;
