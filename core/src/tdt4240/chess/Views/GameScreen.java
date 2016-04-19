@@ -3,6 +3,8 @@ package tdt4240.chess.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
@@ -13,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import javafx.scene.Scene;
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
@@ -23,8 +26,7 @@ public class GameScreen implements Screen {
 
     private final Stage stage = new Stage(new FitViewport(8, 12));
     Table ui;
-    TextButton btn;
-    TextButton menuBtn;
+    TextButton resetGameBtn, menuBtn;
     Main game;
     Label turnLabel;
     String turn;
@@ -43,7 +45,7 @@ public class GameScreen implements Screen {
         hudGroup = new VerticalGroup();
         hudGroup.space(5);
         turnLabel = new Label(turn, GraphicsAssets.secondaryLabelStyle);
-        btn = new TextButton("Reset Game", GraphicsAssets.btnStyle);
+        resetGameBtn = new TextButton("Reset Game", GraphicsAssets.btnStyle);
         menuBtn = new TextButton("Main Menu", GraphicsAssets.btnStyle);
         menuBtn.addListener(new ClickListener() {
            public void clicked(InputEvent event, float x, float y) {
@@ -51,7 +53,7 @@ public class GameScreen implements Screen {
                SoundAssets.stopPlayingBackgroundMusic();
            }
         });
-        btn.addListener(new ClickListener() {
+        resetGameBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 SoundAssets.stopPlayingBackgroundMusic();
                 Board.getInstance().destroy();
@@ -59,7 +61,7 @@ public class GameScreen implements Screen {
             }
         });
 
-        btnGroup.addActor(btn);
+        btnGroup.addActor(resetGameBtn);
         btnGroup.addActor(menuBtn);
 
         hudGroup.addActor(turnLabel);
@@ -67,7 +69,7 @@ public class GameScreen implements Screen {
 
         ui.add(hudGroup);
         ui.setTransform(true);
-        ui.setScale(1 /this.btn.getHeight());
+        ui.setScale(1 /this.resetGameBtn.getHeight());
         ui.setPosition(4, 1);
         this.stage.addActor(ui);
     }
