@@ -2,6 +2,7 @@ package tdt4240.chess;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Views.MainMenu;
