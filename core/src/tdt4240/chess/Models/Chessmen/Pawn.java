@@ -6,7 +6,7 @@ import tdt4240.chess.Utility.StateContext;
 import tdt4240.chess.Utility.States.PawnState;
 
 public class Pawn extends Chessman {
-    
+
     public Pawn(int x, int y, ChessmanColor chessmanColor) {
         super(chessmanColor);
         this.setBounds(x, y, 1, 1);
