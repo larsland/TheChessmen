@@ -50,8 +50,8 @@ public class OptionsScreen implements Screen {
         muteMusic = new TextButton("Mute Music", GraphicsAssets.btnStyle);
         backBtn = new TextButton("Back", GraphicsAssets.btnStyle);
         mode0Btn = new TextButton("Regular Chess", GraphicsAssets.btnStyle);
-        mode1Btn = new TextButton("Bishop Frenzy", GraphicsAssets.btnStyle);
-        mode2Btn = new TextButton("wutido", GraphicsAssets.btnStyle);
+        mode1Btn = new TextButton("Pawn Frenzy", GraphicsAssets.btnStyle);
+        mode2Btn = new TextButton("420 No Scopes", GraphicsAssets.btnStyle);
 
         muteSfx.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -78,6 +78,12 @@ public class OptionsScreen implements Screen {
                 Options.GAME_MODE = 1;
             }
         });
+        mode2Btn.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y ) {
+                Options.GAME_MODE = 2;
+            }
+        });
+
 
 
         btnGroupSound.addActor(muteSfx);
