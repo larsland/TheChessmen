@@ -32,7 +32,8 @@ public class Board extends Table {
             instance.setClip(true);
             instance.tiles = new Tile[8][8];
             instance.chessmen = new Chessman[8][8];
-            instance.addListener(new BoardController());
+            instance.boardController = new BoardController();
+            instance.addListener(instance.boardController);
         }
         return instance;
     }
