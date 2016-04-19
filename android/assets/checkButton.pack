@@ -1,0 +1,26 @@
+
+checkButton.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+btnDown
+  rotate: false
+  xy: 1, 1
+  size: 150, 50
+  orig: 150, 50
+  offset: 0, 0
+  index: -1
+btnUp
+  rotate: false
+  xy: 153, 1
+  size: 150, 50
+  orig: 150, 50
+  offset: 0, 0
+  index: -1
+btnChecked
+  rotate: false
+  xy: 305, 1
+  size: 150, 50
+  orig: 150, 50
+  offset: 0, 0
+  index: -1
