@@ -30,7 +30,6 @@ public class Board extends Table {
             instance = new Board();
             instance.setBounds(0, 0, Main.UWIDTH, Main.UWIDTH);
             instance.setClip(true);
-
             instance.tiles = new Tile[8][8];
             instance.chessmen = new Chessman[8][8];
             instance.addListener(new BoardController());
@@ -117,4 +116,18 @@ public class Board extends Table {
     public void setTurn(tdt4240.chess.Utility.ChessmanColor turn) {
         this.turn = turn;
     }
+
+    @Override
+    public String toString() {
+        String map = "";
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (getChessmanAt(j, i) == null) map += " + ";
+                else map += getChessmanAt(j, i) + " ";
+            }
+            map += "\n";
+        }
+        return map;
+    }
+
 }

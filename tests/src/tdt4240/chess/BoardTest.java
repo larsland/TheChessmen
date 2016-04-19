@@ -16,7 +16,7 @@ public class BoardTest {
 
     @Test
     public void board_CorrectNumberOfTiles() {
-        Board board = new Board();
+        Board board = Board.getInstance();
         assertTrue(board.getTiles().length == 8);
     }
 }
