@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
+import tdt4240.chess.Models.Board;
 import tdt4240.chess.Utility.ChessmanColor;
 
 public class WinScreen implements Screen {
@@ -44,6 +45,7 @@ public class WinScreen implements Screen {
         });
         replayBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                Board.getInstance().reset();
                 game.setScreen(new GameScreen(game));
             }
         });

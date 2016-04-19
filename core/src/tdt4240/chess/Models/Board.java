@@ -31,7 +31,8 @@ public class Board extends Table {
         }
         return instance;
     }
-    public static void destroy() {
+
+    public void reset() {
         instance = null;
     }
     public void setWin(ChessmanColor chessmanColor) {
@@ -73,10 +74,10 @@ public class Board extends Table {
         return this.tiles;
     }
 
-    public tdt4240.chess.Utility.ChessmanColor getTurn() {
+    public ChessmanColor getTurn() {
         return this.turn;
     }
-    public void setTurn(tdt4240.chess.Utility.ChessmanColor turn) {
+    public void setTurn(ChessmanColor turn) {
         this.turn = turn;
     }
 
