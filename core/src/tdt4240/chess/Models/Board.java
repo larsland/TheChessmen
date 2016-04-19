@@ -51,38 +51,6 @@ public class Board extends Table {
     public Chessman getChessmanAt(int x, int y) { return this.chessmen[x][y]; }
     public BoardController getController() { return this.boardController; }
 
-    public void addChessmen() {
-        for (int i = 0; i < 8; i++) {
-            this.addChessman(new Pawn(i, 1, ChessmanColor.BLACK));
-            this.addChessman(new Pawn(i, 6, ChessmanColor.WHITE));
-        }
-
-        this.addChessman(new Rock(0, 0, ChessmanColor.BLACK));
-        this.addChessman(new Rock(7, 0, ChessmanColor.BLACK));
-        this.addChessman(new Rock(0, 7, ChessmanColor.WHITE));
-        this.addChessman(new Rock(7, 7, ChessmanColor.WHITE));
-
-        /* Add knights. */
-        this.addChessman(new Knight(1, 0, ChessmanColor.BLACK));
-        this.addChessman(new Knight(6, 0, ChessmanColor.BLACK));
-        this.addChessman(new Knight(1, 7, ChessmanColor.WHITE));
-        this.addChessman(new Knight(6, 7, ChessmanColor.WHITE));
-
-        /* Add bishops. */
-        this.addChessman(new Bishop(2, 0, ChessmanColor.BLACK));
-        this.addChessman(new Bishop(5, 0, ChessmanColor.BLACK));
-        this.addChessman(new Bishop(2, 7, ChessmanColor.WHITE));
-        this.addChessman(new Bishop(5, 7, ChessmanColor.WHITE));
-
-        /* Add queens. */
-        this.addChessman(new Queen(3, 0, ChessmanColor.BLACK));
-        this.addChessman(new Queen(3, 7, ChessmanColor.WHITE));
-
-        /* Set and add kings. */
-        this.addChessman(new King(4, 7, ChessmanColor.WHITE));
-        this.addChessman(new King(4, 0, ChessmanColor.BLACK));
-    }
-
     public void updateChessmenPositions(int oldX, int oldY, int x, int y) {
         Chessman chessman = this.chessmen[oldX][oldY];
         this.chessmen[x][y] = chessman;
