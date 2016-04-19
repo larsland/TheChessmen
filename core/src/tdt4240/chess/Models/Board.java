@@ -4,12 +4,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import tdt4240.chess.Controllers.BoardController;
 import tdt4240.chess.Main;
-import tdt4240.chess.Models.Chessmen.Bishop;
-import tdt4240.chess.Models.Chessmen.King;
-import tdt4240.chess.Models.Chessmen.Knight;
-import tdt4240.chess.Models.Chessmen.Pawn;
-import tdt4240.chess.Models.Chessmen.Queen;
-import tdt4240.chess.Models.Chessmen.Rock;
 import tdt4240.chess.Utility.ChessmanColor;
 
 public class Board extends Table {

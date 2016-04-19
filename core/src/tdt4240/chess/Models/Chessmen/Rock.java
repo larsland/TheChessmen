@@ -1,24 +1,19 @@
 package tdt4240.chess.Models.Chessmen;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Utility.ChessmanColor;
-import tdt4240.chess.Utility.Tuple;
+import tdt4240.chess.Utility.StateContext;
+import tdt4240.chess.Utility.States.RockState;
 
 public class Rock extends Chessman {
-
-    private static TextureRegion image;
-
+    
     public Rock(int x, int y, ChessmanColor chessmanColor) {
-        super(chessmanColor, 1);
+        super(chessmanColor);
         this.setBounds(x, y, 1, 1);
 
-        for (int i = 1; i < 9; i++) {
-            this.legalMoves.add(new Tuple(i, 0));
-            this.legalMoves.add(new Tuple(-i, 0));
-            this.legalMoves.add(new Tuple(0, i));
-            this.legalMoves.add(new Tuple(0, -i));
-        }
+        context = new StateContext();
+        context.setState(new RockState(), this);
+        context.setMoves(this);
     }
 
 
