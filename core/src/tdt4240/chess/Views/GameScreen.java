@@ -21,10 +21,11 @@ import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Main;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Utility.ChessmanColor;
+import tdt4240.chess.Utility.Options;
 
 public class GameScreen implements Screen {
 
-    private final Stage stage = new Stage(new FitViewport(8, 12));
+    private final Stage stage = new Stage(new FitViewport(8, 10));
     Table ui;
     TextButton resetGameBtn, menuBtn;
     Main game;
@@ -42,15 +43,15 @@ public class GameScreen implements Screen {
         btnGroup = new HorizontalGroup();
         btnGroup.space(5);
         hudGroup = new VerticalGroup();
-        hudGroup.space(5);
+        hudGroup.space(15);
         turnLabel = new Label(turn, GraphicsAssets.secondaryLabelStyle);
         resetGameBtn = new TextButton("Reset Game", GraphicsAssets.btnStyle);
         menuBtn = new TextButton("Main Menu", GraphicsAssets.btnStyle);
         menuBtn.addListener(new ClickListener() {
-           public void clicked(InputEvent event, float x, float y) {
-               game.setScreen(new MainMenu(game));
-               SoundAssets.stopPlayingBackgroundMusic();
-           }
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new MainMenu(game));
+                SoundAssets.stopPlayingBackgroundMusic();
+            }
         });
         resetGameBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {

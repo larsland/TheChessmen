@@ -3,6 +3,8 @@ package tdt4240.chess.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -21,9 +23,14 @@ public class OptionsScreen implements Screen {
     private final Stage stage = new Stage(new FitViewport(8, 12));
     VerticalGroup btnGroupSound, btnGroupModes, btnGroupBack;
     TextButton muteSfx, muteMusic, backBtn, mode0Btn, mode1Btn, mode2Btn;
+    Texture backgroundImage;
+    Sprite sprite;
 
     public OptionsScreen(Main game) {
         this.game = game;
+        backgroundImage = new Texture(Gdx.files.internal("optionsScreen.png"));
+        sprite = new Sprite(backgroundImage);
+        sprite.setSize(1.0f, 1.0f * sprite.getHeight() / sprite.getWidth());
     }
 
     @Override
@@ -102,6 +109,9 @@ public class OptionsScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(.3f, .3f, .4f, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+        game.batch.begin();
+        game.batch.draw(backgroundImage, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        game.batch.end();
         if (Options.MUSIC_ENABLED) {
             muteMusic.setText("Mute Music");
         }
