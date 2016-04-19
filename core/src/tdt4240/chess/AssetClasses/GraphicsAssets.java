@@ -29,7 +29,7 @@ public class GraphicsAssets {
 
     // Loading the texture region containing all chessmen images
     public static TextureRegion[] chessmenCollection = loadChessmenImages();
-
+    public static TextureRegion sniper = new TextureRegion(new Texture(Gdx.files.internal("sniper.png")));
 
 
 

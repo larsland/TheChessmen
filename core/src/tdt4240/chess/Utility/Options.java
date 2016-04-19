@@ -6,7 +6,6 @@ package tdt4240.chess.Utility;
 public class Options {
 
     public static boolean MUSIC_ENABLED = true;
-    public static boolean SFX_ENABLED = false;
-    public static int GAME_MODE = 0;
-
+    public static boolean SFX_ENABLED = true;
+    public static int GAME_MODE = 2;
 }

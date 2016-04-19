@@ -2,9 +2,12 @@ package tdt4240.chess.Models;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
+import java.util.ArrayList;
+
 import tdt4240.chess.Controllers.BoardController;
 import tdt4240.chess.Main;
 import tdt4240.chess.Utility.ChessmanColor;
+import tdt4240.chess.Utility.Tuple;
 
 public class Board extends Table {
 
@@ -81,6 +84,31 @@ public class Board extends Table {
         this.turn = turn;
     }
 
+    public ArrayList<Chessman> getAllChessmen() {
+        ArrayList<Chessman> men = new ArrayList<Chessman>();
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                Chessman c = Board.getInstance().getChessmanAt(x, y);
+                if (c != null) {
+                    men.add(c);
+                }
+            }
+        }
+        return men;
+    }
+    public ArrayList<Tile> getAllEmptyTiles() {
+        ArrayList<Tile> tiles = new ArrayList<Tile>();
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                Chessman c = Board.getInstance().getChessmanAt(x, y);
+                if (c == null) {
+                    tiles.add(getTileAt(x, y));
+                }
+            }
+        }
+        return tiles;
+    }
+
     @Override
     public String toString() {
         String map = "";
@@ -93,5 +121,4 @@ public class Board extends Table {
         }
         return map;
     }
-
 }

@@ -15,6 +15,7 @@ import tdt4240.chess.Utility.ChessmanColor;
 import tdt4240.chess.Utility.Direction;
 import tdt4240.chess.Utility.Options;
 import tdt4240.chess.Utility.RuleBundle;
+import tdt4240.chess.Utility.RuleBundles.NoscopeMode;
 import tdt4240.chess.Utility.RuleBundles.PawnsAreBishops;
 import tdt4240.chess.Utility.RuleBundles.RegularChess;
 import tdt4240.chess.Utility.Tuple;
@@ -147,7 +148,7 @@ public class BoardController extends ClickListener {
 
         chessman.setX(tile.getX());
         chessman.setY(tile.getY());
-        chessmanController.moved(chessman);
+        chessmanController.moved(chessman, tile);
 
         if (attack) {
             SoundAssets.playAttackChessmanSound();
@@ -325,6 +326,9 @@ public class BoardController extends ClickListener {
                 break;
             case(1):
                 game = new PawnsAreBishops();
+                break;
+            case(2):
+                game = new NoscopeMode();
                 break;
             default:
                 throw new IllegalStateException("The game mode is not defined");
