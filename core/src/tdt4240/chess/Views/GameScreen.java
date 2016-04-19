@@ -50,12 +50,10 @@ public class GameScreen implements Screen {
         menuBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new MainMenu(game));
-                SoundAssets.stopPlayingBackgroundMusic();
             }
         });
         resetGameBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                SoundAssets.stopPlayingBackgroundMusic();
                 Board.getInstance().reset();
                 game.setScreen(new GameScreen(game));
             }
