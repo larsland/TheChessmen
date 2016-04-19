@@ -23,23 +23,22 @@ public class Board extends Table {
 
     private static Board instance = null;
 
+    private Board() { }
+
     public static Board getInstance() {
         if (instance == null) {
             instance = new Board();
-            getInstance().setBounds(0, 0, Main.UWIDTH, Main.UWIDTH);
-            getInstance().setClip(true);
+            instance.setBounds(0, 0, Main.UWIDTH, Main.UWIDTH);
+            instance.setClip(true);
 
-            getInstance().tiles = new Tile[8][8];
-            getInstance().chessmen = new Chessman[8][8];
-            getInstance().addListener(new BoardController(getInstance()));
+            instance.tiles = new Tile[8][8];
+            instance.chessmen = new Chessman[8][8];
+            instance.addListener(new BoardController());
         }
         return instance;
     }
     public static void destroy() {
         instance = null;
-    }
-
-    private Board() {
     }
     public void setWin(ChessmanColor chessmanColor) {
         win = chessmanColor;

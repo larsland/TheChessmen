@@ -19,6 +19,7 @@ public class RegularChess implements RuleBundle {
 
     ArrayList<Chessman> chessmen = new ArrayList<Chessman>();
 
+    @Override
     public void instantiateChessmen() {
         for (int i = 0; i < 8; i++) {
             chessmen.add((new Pawn(i, 1, ChessmanColor.BLACK)));
@@ -50,9 +51,11 @@ public class RegularChess implements RuleBundle {
         chessmen.add((new King(4, 7, ChessmanColor.WHITE)));
         chessmen.add((new King(4, 0, ChessmanColor.BLACK)));
     }
+    @Override
     public void instantiateRules() {
 
     }
+    @Override
     public ArrayList<Chessman> getChessmen() {
         return chessmen;
     }
