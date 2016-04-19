@@ -12,8 +12,9 @@ public class StateContext {
         myState = state;
         this.setMoves(chessman);
         this.setSprite(chessman);
-
     }
+
+    public ChessmanState getState() { return this.myState; }
 
     public void setMoves(Chessman chessman){
         chessman.setLegalMoves(myState.getLegalMoves(chessman.getChessmanColor()));
