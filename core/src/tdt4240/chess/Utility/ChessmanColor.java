@@ -10,5 +10,4 @@ public enum ChessmanColor {
             default: return null;
         }
     }
-
 }
