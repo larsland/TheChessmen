@@ -12,6 +12,7 @@ public class SoundAssets {
     public static Sound hitmarkerSound;
     public static Sound menuMusic;
     public static Sound victorySound;
+    public static Sound rifleSound;
 
     public static void loadSounds() {
         moveChessmanSound = Gdx.audio.newSound(Gdx.files.internal("sounds/moveChessmanSound.mp3"));
@@ -19,13 +20,13 @@ public class SoundAssets {
         hitmarkerSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hitmarker.wav"));
         menuMusic = Gdx.audio.newSound(Gdx.files.internal("sounds/menuMusic.mp3"));
         victorySound = Gdx.audio.newSound(Gdx.files.internal("sounds/victorySound.mp3"));
+        rifleSound = Gdx.audio.newSound(Gdx.files.internal("sounds/rifleSound.mp3"));
     }
 
     public static void playMoveChessmanSound() {
         if (Options.SFX_ENABLED) {
             moveChessmanSound.play(1.0f);
         }
-
     }
     public static void playBackgroundMusic() {
         if (Options.MUSIC_ENABLED) {
@@ -57,6 +58,9 @@ public class SoundAssets {
 
     public static void playVictorySound() {
         victorySound.play(1.0f);
+    }
+    public static void playRifleSound() {
+        rifleSound.play(1.0f);
     }
 
 }

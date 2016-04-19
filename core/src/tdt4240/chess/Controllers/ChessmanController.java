@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.Chessmen.King;
@@ -32,6 +33,7 @@ public class ChessmanController {
                         ArrayList<Chessman> allChessmen = Board.getInstance().getAllChessmen();
                         int index = random.nextInt(allChessmen.size());
                         Chessman toCheck = Board.getInstance().getChessmanAt((int) allChessmen.get(index).getX(), (int) allChessmen.get(index).getY());
+                        SoundAssets.playRifleSound();
                         if (toCheck.getClass() == King.class) {
                             Board.getInstance().setWin(toCheck.getChessmanColor().opposite());
                         }
