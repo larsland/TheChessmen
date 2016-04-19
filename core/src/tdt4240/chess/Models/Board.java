@@ -11,7 +11,7 @@ public class Board extends Table {
     private Tile[][] tiles;
     private Chessman[][] chessmen;
 
-    private ChessmanColor turn = ChessmanColor.BLACK;
+    private ChessmanColor turn = ChessmanColor.WHITE;
     private ChessmanColor win = null;
     BoardController boardController;
 

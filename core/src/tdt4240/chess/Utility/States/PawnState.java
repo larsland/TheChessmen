@@ -15,13 +15,13 @@ public class PawnState implements ChessmanState {
     public List<Tuple> getLegalMoves(ChessmanColor chessmanColor) {
         List<Tuple> legalMoves = new ArrayList<Tuple>();
         if (chessmanColor == ChessmanColor.BLACK) {
-            legalMoves.add(new Tuple(0, 1));
-            legalMoves.add(new Tuple(0, 2));
+            legalMoves.add(new Tuple(0, -1));
+            legalMoves.add(new Tuple(0, -2));
 
         }
         else if(chessmanColor == ChessmanColor.WHITE) {
-            legalMoves.add(new Tuple(0, -1));
-            legalMoves.add(new Tuple(0, -2));
+            legalMoves.add(new Tuple(0, 1));
+            legalMoves.add(new Tuple(0, 2));
         }
         return legalMoves;
     }
@@ -30,13 +30,13 @@ public class PawnState implements ChessmanState {
     public List<Tuple> getAttackMoves(ChessmanColor chessmanColor) {
         List<Tuple> attackMoves = new ArrayList<Tuple>();
         if (chessmanColor == ChessmanColor.BLACK) {
-            attackMoves.add(new Tuple(1, 1));
-            attackMoves.add(new Tuple(-1, 1));
+            attackMoves.add(new Tuple(-1, -1));
+            attackMoves.add(new Tuple(1, -1));
 
         }
         else if(chessmanColor == ChessmanColor.WHITE) {
-            attackMoves.add(new Tuple(-1, -1));
-            attackMoves.add(new Tuple(1, -1));
+            attackMoves.add(new Tuple(1, 1));
+            attackMoves.add(new Tuple(-1, 1));
         }
         return attackMoves;
     }

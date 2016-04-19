@@ -17,10 +17,10 @@ public class GraphicsAssets {
     public static BitmapFont btnFont = new BitmapFont();
 
     // Defining the main button skin
-    private static TextureAtlas btnAtlas = new TextureAtlas(Gdx.files.internal("button.pack"));
-    private static Skin buttonSkin = new Skin(btnAtlas);
+    private static TextureAtlas checkBtnAtlas = new TextureAtlas(Gdx.files.internal("checkButton.pack"));
+    private static Skin checkButtonSkin = new Skin(checkBtnAtlas);
     public static TextButton.TextButtonStyle btnStyle = new TextButton.TextButtonStyle(
-        buttonSkin.getDrawable("btnUp"), buttonSkin.getDrawable("btnDown"), buttonSkin.getDrawable("btnDown"), btnFont
+            checkButtonSkin.getDrawable("btnUp"), checkButtonSkin.getDrawable("btnDown"), checkButtonSkin.getDrawable("btnUp"), btnFont
     );
 
     // Defining label styles

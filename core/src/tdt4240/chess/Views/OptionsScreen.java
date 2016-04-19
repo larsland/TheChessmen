@@ -19,10 +19,8 @@ public class OptionsScreen implements Screen {
 
     private Main game;
     private final Stage stage = new Stage(new FitViewport(8, 12));
-    VerticalGroup btnGroup;
-    TextButton muteSfx;
-    TextButton muteMusic;
-    TextButton backBtn;
+    VerticalGroup btnGroupSound, btnGroupModes, btnGroupBack;
+    TextButton muteSfx, muteMusic, backBtn, mode0Btn, mode1Btn, mode2Btn;
 
     public OptionsScreen(Main game) {
         this.game = game;
@@ -38,29 +36,24 @@ public class OptionsScreen implements Screen {
     }
 
     public void createOptions() {
-        btnGroup = new VerticalGroup();
+        btnGroupSound = new VerticalGroup();
+        btnGroupModes = new VerticalGroup();
+        btnGroupBack = new VerticalGroup();
         muteSfx = new TextButton("Mute SFX", GraphicsAssets.btnStyle);
         muteMusic = new TextButton("Mute Music", GraphicsAssets.btnStyle);
         backBtn = new TextButton("Back", GraphicsAssets.btnStyle);
+        mode0Btn = new TextButton("Regular Chess", GraphicsAssets.btnStyle);
+        mode1Btn = new TextButton("Bishop Frenzy", GraphicsAssets.btnStyle);
+        mode2Btn = new TextButton("wutido", GraphicsAssets.btnStyle);
 
         muteSfx.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                if (Options.SFX_ENABLED) {
-                    Options.SFX_ENABLED = false;
-                }
-                else if(!Options.SFX_ENABLED) {
-                    Options.SFX_ENABLED = true;
-                }
+                Options.SFX_ENABLED = !Options.SFX_ENABLED;
             }
         });
         muteMusic.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                if (Options.MUSIC_ENABLED) {
-                    Options.MUSIC_ENABLED = false;
-                }
-                else if(!Options.MUSIC_ENABLED) {
-                    Options.MUSIC_ENABLED = true;
-                }
+                Options.MUSIC_ENABLED = !Options.MUSIC_ENABLED;
             }
         });
         backBtn.addListener(new ClickListener() {
@@ -68,16 +61,40 @@ public class OptionsScreen implements Screen {
                 game.setScreen(new MainMenu(game));
             }
         });
+        mode0Btn.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y ) {
+                Options.GAME_MODE = 0;
+            }
+        });
+        mode1Btn.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y ) {
+                Options.GAME_MODE = 1;
+            }
+        });
 
 
-        btnGroup.addActor(muteSfx);
-        btnGroup.addActor(muteMusic);
-        btnGroup.addActor(backBtn);
-        btnGroup.space(5);
-        btnGroup.setTransform(true);
-        btnGroup.setScale(1 / muteSfx.getHeight());
-        btnGroup.setPosition(4, 7);
-        stage.addActor(btnGroup);
+        btnGroupSound.addActor(muteSfx);
+        btnGroupSound.addActor(muteMusic);
+        btnGroupModes.addActor(mode0Btn);
+        btnGroupModes.addActor(mode1Btn);
+        btnGroupModes.addActor(mode2Btn);
+        btnGroupBack.addActor(backBtn);
+
+        btnGroupSound.space(5);
+        btnGroupSound.setTransform(true);
+        btnGroupSound.setScale(1 / muteSfx.getHeight());
+        btnGroupSound.setPosition(4, 9);
+        btnGroupModes.space(5);
+        btnGroupModes.setTransform(true);
+        btnGroupModes.setScale(1 / muteSfx.getHeight());
+        btnGroupModes.setPosition(4, 6);
+        btnGroupBack.setTransform(true);
+        btnGroupBack.setScale(1 / muteSfx.getHeight());
+        btnGroupBack.setPosition(4, 2);
+
+        stage.addActor(btnGroupSound);
+        stage.addActor(btnGroupModes);
+        stage.addActor(btnGroupBack);
 
     }
 
