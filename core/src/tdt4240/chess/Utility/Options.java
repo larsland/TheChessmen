@@ -7,5 +7,5 @@ public class Options {
 
     public static boolean MUSIC_ENABLED = true;
     public static boolean SFX_ENABLED = true;
-    public static int GAME_MODE = 1;
+    public static int GAME_MODE = 0;
 }

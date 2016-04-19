@@ -22,34 +22,34 @@ public class RegularChess implements RuleBundle {
     @Override
     public void instantiateChessmen() {
         for (int i = 0; i < 8; i++) {
-            chessmen.add((new Pawn(i, 1, ChessmanColor.BLACK)));
-            chessmen.add((new Pawn(i, 6, ChessmanColor.WHITE)));
+            chessmen.add((new Pawn(i, 6, ChessmanColor.BLACK)));
+            chessmen.add((new Pawn(i, 1, ChessmanColor.WHITE)));
         }
 
-        chessmen.add((new Rock(0, 0, ChessmanColor.BLACK)));
-        chessmen.add((new Rock(7, 0, ChessmanColor.BLACK)));
-        chessmen.add((new Rock(0, 7, ChessmanColor.WHITE)));
-        chessmen.add((new Rock(7, 7, ChessmanColor.WHITE)));
+        chessmen.add((new Rock(0, 7, ChessmanColor.BLACK)));
+        chessmen.add((new Rock(7, 7, ChessmanColor.BLACK)));
+        chessmen.add((new Rock(0, 0, ChessmanColor.WHITE)));
+        chessmen.add((new Rock(7, 0, ChessmanColor.WHITE)));
 
         //* Add knights. *//*
-        chessmen.add((new Knight(1, 0, ChessmanColor.BLACK)));
-        chessmen.add((new Knight(6, 0, ChessmanColor.BLACK)));
-        chessmen.add((new Knight(1, 7, ChessmanColor.WHITE)));
-        chessmen.add((new Knight(6, 7, ChessmanColor.WHITE)));
+        chessmen.add((new Knight(1, 7, ChessmanColor.BLACK)));
+        chessmen.add((new Knight(6, 7, ChessmanColor.BLACK)));
+        chessmen.add((new Knight(1, 0, ChessmanColor.WHITE)));
+        chessmen.add((new Knight(6, 0, ChessmanColor.WHITE)));
 
         //* Add bishops. *//*
-        chessmen.add((new Bishop(2, 0, ChessmanColor.BLACK)));
-        chessmen.add((new Bishop(5, 0, ChessmanColor.BLACK)));
-        chessmen.add((new Bishop(2, 7, ChessmanColor.WHITE)));
-        chessmen.add((new Bishop(5, 7, ChessmanColor.WHITE)));
+        chessmen.add((new Bishop(2, 7, ChessmanColor.BLACK)));
+        chessmen.add((new Bishop(5, 7, ChessmanColor.BLACK)));
+        chessmen.add((new Bishop(2, 0, ChessmanColor.WHITE)));
+        chessmen.add((new Bishop(5, 0, ChessmanColor.WHITE)));
 
         //* Add queens. *//*
-        chessmen.add((new Queen(3, 0, ChessmanColor.BLACK)));
-        chessmen.add((new Queen(3, 7, ChessmanColor.WHITE)));
+        chessmen.add((new Queen(3, 7, ChessmanColor.BLACK)));
+        chessmen.add((new Queen(3, 0, ChessmanColor.WHITE)));
 
         //* Set and add kings. *//*
-        chessmen.add((new King(4, 7, ChessmanColor.WHITE)));
-        chessmen.add((new King(4, 0, ChessmanColor.BLACK)));
+        chessmen.add((new King(4, 0, ChessmanColor.WHITE)));
+        chessmen.add((new King(4, 7, ChessmanColor.BLACK)));
     }
     @Override
     public void instantiateRules() {
