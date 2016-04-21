@@ -22,8 +22,7 @@ public class MainMenu implements Screen {
     private final Stage stage = new Stage(new FitViewport(8, 12));
 
     VerticalGroup menu;
-    TextButton startBtn;
-    TextButton optionsBtn;
+    TextButton startBtn, optionsBtn, continueBtn;
     Texture backgroundImage;
     Sprite sprite;
 
@@ -36,10 +35,10 @@ public class MainMenu implements Screen {
 
     public void createMenu() {
         menu = new VerticalGroup();
-        startBtn = new TextButton("Start Game", GraphicsAssets.btnStyle);
+        startBtn = new TextButton("New Game", GraphicsAssets.btnStyle);
         startBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new GameScreen(game, "new"));
             }
         });
         optionsBtn = new TextButton("Options", GraphicsAssets.btnStyle);
@@ -48,7 +47,14 @@ public class MainMenu implements Screen {
                 game.setScreen(new OptionsScreen(game));
             }
         });
+        continueBtn = new TextButton("Continue", GraphicsAssets.btnStyle);
+        continueBtn.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new GameScreen(game, "continue"));
+            }
+        });
         menu.addActor(startBtn);
+        menu.addActor(continueBtn);
         menu.addActor(optionsBtn);
         menu.setTransform(true);
         menu.setScale(1 / startBtn.getHeight());

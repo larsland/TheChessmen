@@ -33,9 +33,11 @@ public class GameScreen implements Screen {
     String turn;
     HorizontalGroup btnGroup;
     VerticalGroup hudGroup;
+    String newOrContinue;
 
-    public GameScreen(Main game) {
+    public GameScreen(Main game, String newOrContinue) {
         this.game = game;
+        this.newOrContinue = newOrContinue;
     }
 
     public void createUi() {
@@ -55,7 +57,7 @@ public class GameScreen implements Screen {
         resetGameBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 Board.getInstance().reset();
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new GameScreen(game, "new"));
             }
         });
 
@@ -74,6 +76,9 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
+        if (this.newOrContinue.equals("new")) {
+            Board.getInstance().reset();
+        }
         SoundAssets.stopAllMusic();
         SoundAssets.playBackgroundMusic();
         Board.getInstance().setPosition(0, 2);

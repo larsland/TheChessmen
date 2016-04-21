@@ -46,7 +46,7 @@ public class WinScreen implements Screen {
         replayBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 Board.getInstance().reset();
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new GameScreen(game, "new"));
             }
         });
 

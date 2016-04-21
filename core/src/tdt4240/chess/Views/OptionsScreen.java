@@ -56,11 +56,13 @@ public class OptionsScreen implements Screen {
         muteSfx.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 Options.SFX_ENABLED = !Options.SFX_ENABLED;
+                game.setScreen(new OptionsScreen(game));
             }
         });
         muteMusic.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 Options.MUSIC_ENABLED = !Options.MUSIC_ENABLED;
+                game.setScreen(new OptionsScreen(game));
             }
         });
         backBtn.addListener(new ClickListener() {
@@ -79,7 +81,7 @@ public class OptionsScreen implements Screen {
             }
         });
         mode2Btn.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y ) {
+            public void clicked(InputEvent event, float x, float y) {
                 Options.GAME_MODE = 2;
             }
         });
@@ -92,6 +94,7 @@ public class OptionsScreen implements Screen {
         btnGroupModes.addActor(mode1Btn);
         btnGroupModes.addActor(mode2Btn);
         btnGroupBack.addActor(backBtn);
+
 
         btnGroupSound.space(5);
         btnGroupSound.setTransform(true);
