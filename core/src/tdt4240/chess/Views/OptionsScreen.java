@@ -28,7 +28,7 @@ public class OptionsScreen implements Screen {
 
     public OptionsScreen(Main game) {
         this.game = game;
-        backgroundImage = new Texture(Gdx.files.internal("optionsScreen.png"));
+        backgroundImage = new Texture(Gdx.files.internal("graphic/optionsScreen.png"));
         sprite = new Sprite(backgroundImage);
         sprite.setSize(1.0f, 1.0f * sprite.getHeight() / sprite.getWidth());
     }

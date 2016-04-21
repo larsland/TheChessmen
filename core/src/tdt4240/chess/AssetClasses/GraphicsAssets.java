@@ -17,7 +17,7 @@ public class GraphicsAssets {
     public static BitmapFont btnFont = new BitmapFont();
 
     // Defining the main button skin
-    private static TextureAtlas checkBtnAtlas = new TextureAtlas(Gdx.files.internal("checkButton.pack"));
+    private static TextureAtlas checkBtnAtlas = new TextureAtlas(Gdx.files.internal("graphic/checkButton.pack"));
     private static Skin checkButtonSkin = new Skin(checkBtnAtlas);
     public static TextButton.TextButtonStyle btnStyle = new TextButton.TextButtonStyle(
             checkButtonSkin.getDrawable("btnUp"), checkButtonSkin.getDrawable("btnDown"), checkButtonSkin.getDrawable("btnUp"), btnFont
@@ -29,7 +29,7 @@ public class GraphicsAssets {
 
     // Loading the texture region containing all chessmen images
     public static TextureRegion[] chessmenCollection = loadChessmenImages();
-    public static TextureRegion sniper = new TextureRegion(new Texture(Gdx.files.internal("sniper.png")));
+    public static TextureRegion sniper = new TextureRegion(new Texture(Gdx.files.internal("graphic/sniper.png")));
 
 
 
@@ -42,7 +42,7 @@ public class GraphicsAssets {
         int FRAME_COLS = 6;
         int FRAME_ROWS = 2;
 
-        Texture chessMenImage = new Texture(Gdx.files.internal("pieces.png"));
+        Texture chessMenImage = new Texture(Gdx.files.internal("graphic/pieces.png"));
         TextureRegion[] list = new TextureRegion[FRAME_COLS * FRAME_ROWS];
 
         TextureRegion[][] tmp = TextureRegion.split(chessMenImage, chessMenImage.getWidth()/FRAME_COLS, chessMenImage.getHeight()/FRAME_ROWS);

@@ -23,9 +23,9 @@ public class Tile extends Actor {
 
         switch(c) {
             case 'b': chessmanColor = tdt4240.chess.Utility.ChessmanColor.BLACK;
-                texture = new Texture(Gdx.files.internal("blackTile.png")); break;
+                texture = new Texture(Gdx.files.internal("graphic/blackTile.png")); break;
             case 'w': chessmanColor = tdt4240.chess.Utility.ChessmanColor.WHITE;
-                texture = new Texture(Gdx.files.internal("whiteTile.png")); break;
+                texture = new Texture(Gdx.files.internal("graphic/whiteTile.png")); break;
         }
 
     }
@@ -40,13 +40,13 @@ public class Tile extends Actor {
         super.draw(batch, 1);
 
         if (this.selected) {
-            batch.draw(new Texture(Gdx.files.internal("highlight.png")), this.getX(), this.getY(), 1, 1);
+            batch.draw(new Texture(Gdx.files.internal("graphic/highlight.png")), this.getX(), this.getY(), 1, 1);
         }
         else if (this.highlighted) {
-            batch.draw(new Texture(Gdx.files.internal("moveHighlight.png")), this.getX(), this.getY(), 1, 1);
+            batch.draw(new Texture(Gdx.files.internal("graphic/moveHighlight.png")), this.getX(), this.getY(), 1, 1);
         }
         else if (this.attackable) {
-            batch.draw(new Texture(Gdx.files.internal("attackHighlight.png")), this.getX(), this.getY(), 1, 1);
+            batch.draw(new Texture(Gdx.files.internal("graphic/attackHighlight.png")), this.getX(), this.getY(), 1, 1);
         }
         else {
             batch.draw(texture, this.getX(), this.getY(), 1, 1);
