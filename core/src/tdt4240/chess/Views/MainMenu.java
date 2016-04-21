@@ -28,7 +28,7 @@ public class MainMenu implements Screen {
 
     public MainMenu(Main game) {
         this.game = game;
-        backgroundImage = new Texture(Gdx.files.internal("graphic/menuScreen.png"));
+        backgroundImage = GraphicsAssets.mainMenuBackground;
         sprite = new Sprite(backgroundImage);
         sprite.setSize(1.0f, 1.0f* sprite.getHeight() / sprite.getWidth());
     }

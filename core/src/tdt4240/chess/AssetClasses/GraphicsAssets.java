@@ -31,8 +31,17 @@ public class GraphicsAssets {
     public static TextureRegion[] chessmenCollection = loadChessmenImages();
     public static TextureRegion sniper = new TextureRegion(new Texture(Gdx.files.internal("graphic/sniper.png")));
 
+    // All tile images
+    public static Texture whiteTile = new Texture(Gdx.files.internal("graphic/whiteTile.png"));
+    public static Texture blackTile = new Texture(Gdx.files.internal("graphic/blackTile.png"));
+    public static Texture attackTile = new Texture(Gdx.files.internal("graphic/attackHighlight.png"));
+    public static Texture highlightTile = new Texture(Gdx.files.internal("graphic/moveHighlight.png"));
 
+    // All backgrounds
+    public static Texture optionsBackground = new Texture(Gdx.files.internal("graphic/optionsScreen.png"));
+    public static Texture mainMenuBackground = new Texture(Gdx.files.internal("graphic/menuScreen.png"));
 
+    // Function to scale the fonts before they are loaded
     public static void loadFonts() {
         gameFont.getData().setScale((float) 1.7, (float) 1.7);
         btnFont.getData().setScale((float) 1.3, (float) 1.3);
