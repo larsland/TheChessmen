@@ -9,6 +9,8 @@ public class StateContext {
     private ChessmanState myState;
 
     public void setState(final ChessmanState state, Chessman chessman){
+        chessman.getLegalMoves().clear();
+        chessman.getAttackMoves().clear();
         myState = state;
         this.setMoves(chessman);
         this.setSprite(chessman);
