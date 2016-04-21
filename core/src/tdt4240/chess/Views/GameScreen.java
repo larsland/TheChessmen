@@ -51,11 +51,13 @@ public class GameScreen implements Screen {
         menuBtn = new TextButton("Main Menu", GraphicsAssets.btnStyle);
         menuBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 game.setScreen(new MainMenu(game));
             }
         });
         resetGameBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 Board.getInstance().reset();
                 game.setScreen(new GameScreen(game, "new"));
             }

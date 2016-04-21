@@ -38,18 +38,21 @@ public class MainMenu implements Screen {
         startBtn = new TextButton("New Game", GraphicsAssets.btnStyle);
         startBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 game.setScreen(new GameScreen(game, "new"));
             }
         });
         optionsBtn = new TextButton("Options", GraphicsAssets.btnStyle);
         optionsBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 game.setScreen(new OptionsScreen(game));
             }
         });
         continueBtn = new TextButton("Continue", GraphicsAssets.btnStyle);
         continueBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 game.setScreen(new GameScreen(game, "continue"));
             }
         });

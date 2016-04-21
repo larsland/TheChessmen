@@ -55,33 +55,39 @@ public class OptionsScreen implements Screen {
 
         muteSfx.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 Options.SFX_ENABLED = !Options.SFX_ENABLED;
                 game.setScreen(new OptionsScreen(game));
             }
         });
         muteMusic.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 Options.MUSIC_ENABLED = !Options.MUSIC_ENABLED;
                 game.setScreen(new OptionsScreen(game));
             }
         });
         backBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 game.setScreen(new MainMenu(game));
             }
         });
         mode0Btn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y ) {
+                SoundAssets.playAttackChessmanSound();
                 Options.GAME_MODE = 0;
             }
         });
         mode1Btn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y ) {
+                SoundAssets.playAttackChessmanSound();
                 Options.GAME_MODE = 1;
             }
         });
         mode2Btn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 Options.GAME_MODE = 2;
             }
         });

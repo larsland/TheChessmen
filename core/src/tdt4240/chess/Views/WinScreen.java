@@ -40,11 +40,13 @@ public class WinScreen implements Screen {
 
         menuBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 game.setScreen(new MainMenu(game));
             }
         });
         replayBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 Board.getInstance().reset();
                 game.setScreen(new GameScreen(game, "new"));
             }
