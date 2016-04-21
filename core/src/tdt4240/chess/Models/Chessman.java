@@ -3,12 +3,8 @@ package tdt4240.chess.Models;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import tdt4240.chess.Utility.ChessmanColor;
 import tdt4240.chess.Utility.StateContext;
 import tdt4240.chess.Utility.Tuple;
@@ -54,9 +50,6 @@ public class Chessman extends Actor {
     public void setAttackMoves(List<Tuple> moves) {this.attackMoves = moves;}
     public void setLegalMoves(List<Tuple> moves) {
         this.legalMoves = moves;
-    }
-
-    public void attackMoves() {
     }
 
     @Override

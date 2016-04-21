@@ -3,9 +3,7 @@ package tdt4240.chess.Controllers;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-
 import java.util.ArrayList;
-
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;

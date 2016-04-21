@@ -3,7 +3,6 @@ package tdt4240.chess.Controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
