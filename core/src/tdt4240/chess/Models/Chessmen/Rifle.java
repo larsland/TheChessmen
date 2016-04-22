@@ -1,9 +1,7 @@
 package tdt4240.chess.Models.Chessmen;
 
 import tdt4240.chess.Models.Chessman;
-import tdt4240.chess.Utility.ChessmanColor;
 import tdt4240.chess.Utility.StateContext;
-import tdt4240.chess.Utility.States.BishopState;
 import tdt4240.chess.Utility.States.RifleState;
 
 /**

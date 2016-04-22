@@ -11,7 +11,6 @@ import tdt4240.chess.Models.Chessmen.Queen;
 import tdt4240.chess.Models.Chessmen.Rock;
 import tdt4240.chess.Utility.ChessmanColor;
 import tdt4240.chess.Utility.RuleBundle;
-import tdt4240.chess.Utility.Tuple;
 
 /**
  * Created by berg on 19/04/16.

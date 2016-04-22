@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import tdt4240.chess.Controllers.BoardController;
 import tdt4240.chess.Main;
 import tdt4240.chess.Utility.ChessmanColor;
-import tdt4240.chess.Utility.Tuple;
 
 public class Board extends Table {
 
