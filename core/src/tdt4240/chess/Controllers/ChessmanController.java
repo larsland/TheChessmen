@@ -10,9 +10,9 @@ import tdt4240.chess.Models.Chessmen.King;
 import tdt4240.chess.Models.Chessmen.Pawn;
 import tdt4240.chess.Models.Chessmen.Rifle;
 import tdt4240.chess.Models.Tile;
-import tdt4240.chess.Utility.Options;
-import tdt4240.chess.Utility.States.QueenState;
-import tdt4240.chess.Utility.Tuple;
+import tdt4240.chess.Models.Utility.Options;
+import tdt4240.chess.Models.Utility.States.QueenState;
+import tdt4240.chess.Models.Utility.Tuple;
 
 public class ChessmanController {
 

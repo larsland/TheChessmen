@@ -1,0 +1,13 @@
+"Welcome to TheChessmen! " + '\n' + '\n' +
+"Select a prefered game mode in the" + '\n' +
+"Options menu. Here you can also mute" + '\n' +
+"music and sfx. CLick 'new game' to" + '\n' +
+"start a new game with the selected" + '\n' +
+"rules or click 'continue' to contiune" + '\n' +
+"where you left off." +'\n' + '\n' +
+"Move by clicking a chessman, and then on" + '\n' +
+"one of the tiles highlighted in blue to move" + '\n' +
+"or red to attack." + '\n' + '\n' +
+"Some of the game modes will change" + '\n' +
+"the way the pieces are allowed to move" + '\n' +
+"or how the game behaves."

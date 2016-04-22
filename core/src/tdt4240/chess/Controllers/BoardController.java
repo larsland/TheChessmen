@@ -9,14 +9,14 @@ import tdt4240.chess.Models.Board;
 import tdt4240.chess.Models.Chessman;
 import tdt4240.chess.Models.Chessmen.King;
 import tdt4240.chess.Models.Tile;
-import tdt4240.chess.Utility.ChessmanColor;
-import tdt4240.chess.Utility.Direction;
-import tdt4240.chess.Utility.Options;
-import tdt4240.chess.Utility.RuleBundle;
-import tdt4240.chess.Utility.RuleBundles.NoscopeMode;
-import tdt4240.chess.Utility.RuleBundles.PawnsAreBishops;
-import tdt4240.chess.Utility.RuleBundles.RegularChess;
-import tdt4240.chess.Utility.Tuple;
+import tdt4240.chess.Models.Utility.ChessmanColor;
+import tdt4240.chess.Models.Utility.Direction;
+import tdt4240.chess.Models.Utility.Options;
+import tdt4240.chess.Models.Utility.RuleBundle;
+import tdt4240.chess.Models.Utility.RuleBundles.NoscopeMode;
+import tdt4240.chess.Models.Utility.RuleBundles.PawnsAreBishops;
+import tdt4240.chess.Models.Utility.RuleBundles.RegularChess;
+import tdt4240.chess.Models.Utility.Tuple;
 
 public class BoardController extends ClickListener {
 

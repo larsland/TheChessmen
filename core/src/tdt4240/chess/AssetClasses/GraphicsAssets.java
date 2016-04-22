@@ -15,6 +15,7 @@ public class GraphicsAssets {
     // Defining fonts
     public static BitmapFont gameFont = new BitmapFont();
     public static BitmapFont btnFont = new BitmapFont();
+    public static BitmapFont textFont = new BitmapFont();
 
     // Defining the main button skin
     private static TextureAtlas checkBtnAtlas = new TextureAtlas(Gdx.files.internal("graphic/checkButton.pack"));
@@ -24,7 +25,7 @@ public class GraphicsAssets {
     );
 
     // Defining label styles
-    public static Label.LabelStyle mainLabelStyle = new Label.LabelStyle(gameFont, Color.BLACK);
+    public static Label.LabelStyle mainLabelStyle = new Label.LabelStyle(textFont, Color.ORANGE);
     public static Label.LabelStyle secondaryLabelStyle = new Label.LabelStyle(gameFont, Color.ORANGE);
 
     // Loading the texture region containing all chessmen images
@@ -45,6 +46,7 @@ public class GraphicsAssets {
     public static void loadFonts() {
         gameFont.getData().setScale((float) 1.7, (float) 1.7);
         btnFont.getData().setScale((float) 1.3, (float) 1.3);
+        textFont.getData().setScale((float) 1.2, (float) 1.2);
     }
 
     private static TextureRegion[] loadChessmenImages() {

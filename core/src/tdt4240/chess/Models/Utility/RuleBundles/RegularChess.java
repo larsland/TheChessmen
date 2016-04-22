@@ -1,4 +1,4 @@
-package tdt4240.chess.Utility.RuleBundles;
+package tdt4240.chess.Models.Utility.RuleBundles;
 
 import java.util.ArrayList;
 
@@ -9,8 +9,8 @@ import tdt4240.chess.Models.Chessmen.Knight;
 import tdt4240.chess.Models.Chessmen.Pawn;
 import tdt4240.chess.Models.Chessmen.Queen;
 import tdt4240.chess.Models.Chessmen.Rock;
-import tdt4240.chess.Utility.ChessmanColor;
-import tdt4240.chess.Utility.RuleBundle;
+import tdt4240.chess.Models.Utility.ChessmanColor;
+import tdt4240.chess.Models.Utility.RuleBundle;
 
 /**
  * Created by Fredrik on 17/04/16.

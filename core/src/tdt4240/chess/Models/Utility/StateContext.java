@@ -1,4 +1,4 @@
-package tdt4240.chess.Utility;
+package tdt4240.chess.Models.Utility;
 
 import tdt4240.chess.Models.Chessman;
 

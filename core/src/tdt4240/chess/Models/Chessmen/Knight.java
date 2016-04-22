@@ -1,9 +1,9 @@
 package tdt4240.chess.Models.Chessmen;
 
 import tdt4240.chess.Models.Chessman;
-import tdt4240.chess.Utility.ChessmanColor;
-import tdt4240.chess.Utility.StateContext;
-import tdt4240.chess.Utility.States.KnightState;
+import tdt4240.chess.Models.Utility.ChessmanColor;
+import tdt4240.chess.Models.Utility.StateContext;
+import tdt4240.chess.Models.Utility.States.KnightState;
 
 public class Knight extends Chessman {
 

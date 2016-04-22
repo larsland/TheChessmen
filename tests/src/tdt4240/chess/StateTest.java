@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.Controllers.ChessmanController;
 import tdt4240.chess.Models.Chessmen.Pawn;
-import tdt4240.chess.Utility.ChessmanColor;
-import tdt4240.chess.Utility.States.QueenState;
+import tdt4240.chess.Models.Utility.ChessmanColor;
+import tdt4240.chess.Models.Utility.States.QueenState;
 
 import static org.junit.Assert.assertTrue;
 

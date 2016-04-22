@@ -1,4 +1,4 @@
-package tdt4240.chess;
+package tdt4240.chess.Controllers;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,7 +7,7 @@ import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Views.MainMenu;
 
-public class Main extends Game {
+public class TheChessmen extends Game {
 	public SpriteBatch batch;
 	public static final int UWIDTH = 8;
 

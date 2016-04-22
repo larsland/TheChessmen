@@ -13,19 +13,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
-import tdt4240.chess.Main;
+import tdt4240.chess.Controllers.TheChessmen;
 
 public class MainMenu implements Screen {
 
-    Main game;
+    TheChessmen game;
     private final Stage stage = new Stage(new FitViewport(8, 12));
 
     VerticalGroup menu;
-    TextButton startBtn, optionsBtn, continueBtn;
+    TextButton startBtn, optionsBtn, continueBtn, helpBtn;
     Texture backgroundImage;
     Sprite sprite;
 
-    public MainMenu(Main game) {
+    public MainMenu(TheChessmen game) {
         this.game = game;
         backgroundImage = GraphicsAssets.mainMenuBackground;
         sprite = new Sprite(backgroundImage);
@@ -55,9 +55,17 @@ public class MainMenu implements Screen {
                 game.setScreen(new GameScreen(game, "continue"));
             }
         });
+        helpBtn = new TextButton("Help", GraphicsAssets.btnStyle);
+        helpBtn.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new HelpScreen(game));
+
+            }
+        });
         menu.addActor(startBtn);
         menu.addActor(continueBtn);
         menu.addActor(optionsBtn);
+        menu.addActor(helpBtn);
         menu.setTransform(true);
         menu.setScale(1 / startBtn.getHeight());
         menu.setPosition(4, 7);

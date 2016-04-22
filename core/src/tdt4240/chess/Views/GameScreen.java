@@ -14,23 +14,23 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
-import tdt4240.chess.Main;
+import tdt4240.chess.Controllers.TheChessmen;
 import tdt4240.chess.Models.Board;
-import tdt4240.chess.Utility.ChessmanColor;
+import tdt4240.chess.Models.Utility.ChessmanColor;
 
 public class GameScreen implements Screen {
 
     private final Stage stage = new Stage(new FitViewport(8, 10));
     Table ui;
     TextButton resetGameBtn, menuBtn;
-    Main game;
+    TheChessmen game;
     Label turnLabel;
     String turn;
     HorizontalGroup btnGroup;
     VerticalGroup hudGroup;
     String newOrContinue;
 
-    public GameScreen(Main game, String newOrContinue) {
+    public GameScreen(TheChessmen game, String newOrContinue) {
         this.game = game;
         this.newOrContinue = newOrContinue;
     }
@@ -92,7 +92,7 @@ public class GameScreen implements Screen {
         this.stage.draw();
 
         if (Board.getInstance().getWin() == ChessmanColor.BLACK || Board.getInstance().getWin() == ChessmanColor.WHITE) {
-            game.setScreen(new WinScreen(this.game, Board.getInstance().getWin()));
+            game.setScreen(new WinScreen(this.game, Board.getInstance().getWin().name()));
         }
     }
 

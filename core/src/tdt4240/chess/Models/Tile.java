@@ -5,10 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import tdt4240.chess.AssetClasses.GraphicsAssets;
+import tdt4240.chess.Models.Utility.ChessmanColor;
 
 public class Tile extends Actor {
 
-    private tdt4240.chess.Utility.ChessmanColor chessmanColor;
+    private ChessmanColor chessmanColor;
     private Texture texture;
     private int x, y;
     public boolean selected;
@@ -23,9 +24,9 @@ public class Tile extends Actor {
         this.y = y;
 
         switch(c) {
-            case 'b': chessmanColor = tdt4240.chess.Utility.ChessmanColor.BLACK;
+            case 'b': chessmanColor = ChessmanColor.BLACK;
                 texture = GraphicsAssets.blackTile; break;
-            case 'w': chessmanColor = tdt4240.chess.Utility.ChessmanColor.WHITE;
+            case 'w': chessmanColor = ChessmanColor.WHITE;
                 texture = GraphicsAssets.whiteTile; break;
         }
 

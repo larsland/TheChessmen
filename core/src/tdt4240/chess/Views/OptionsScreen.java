@@ -13,19 +13,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
-import tdt4240.chess.Main;
-import tdt4240.chess.Utility.Options;
+import tdt4240.chess.Controllers.TheChessmen;
+import tdt4240.chess.Models.Utility.Options;
 
 public class OptionsScreen implements Screen {
 
-    private Main game;
+    private TheChessmen game;
     private final Stage stage = new Stage(new FitViewport(8, 12));
     VerticalGroup btnGroupSound, btnGroupModes, btnGroupBack;
     TextButton muteSfx, muteMusic, backBtn, mode0Btn, mode1Btn, mode2Btn;
     Texture backgroundImage;
     Sprite sprite;
 
-    public OptionsScreen(Main game) {
+    public OptionsScreen(TheChessmen game) {
         this.game = game;
         backgroundImage = GraphicsAssets.optionsBackground;
         sprite = new Sprite(backgroundImage);

@@ -1,4 +1,4 @@
-package tdt4240.chess.Utility;
+package tdt4240.chess.Models.Utility;
 
 public enum ChessmanColor {
     BLACK, WHITE, ChessmanColor;

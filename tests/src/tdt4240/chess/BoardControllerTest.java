@@ -8,8 +8,7 @@ import org.junit.runner.RunWith;
 
 import tdt4240.chess.Controllers.BoardController;
 import tdt4240.chess.Models.Board;
-import tdt4240.chess.Utility.ChessmanColor;
-import tdt4240.chess.Utility.Options;
+import tdt4240.chess.Models.Utility.Options;
 
 import static org.junit.Assert.assertTrue;
 

@@ -3,8 +3,8 @@ package tdt4240.chess.Models;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import java.util.ArrayList;
 import tdt4240.chess.Controllers.BoardController;
-import tdt4240.chess.Main;
-import tdt4240.chess.Utility.ChessmanColor;
+import tdt4240.chess.Controllers.TheChessmen;
+import tdt4240.chess.Models.Utility.ChessmanColor;
 
 public class Board extends Table {
 
@@ -22,7 +22,7 @@ public class Board extends Table {
     public static Board getInstance() {
         if (instance == null) {
             instance = new Board();
-            instance.setBounds(0, 0, Main.UWIDTH, Main.UWIDTH);
+            instance.setBounds(0, 0, TheChessmen.UWIDTH, TheChessmen.UWIDTH);
             instance.setClip(true);
             instance.tiles = new Tile[8][8];
             instance.chessmen = new Chessman[8][8];

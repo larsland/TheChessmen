@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.ArrayList;
 import java.util.List;
-import tdt4240.chess.Utility.ChessmanColor;
-import tdt4240.chess.Utility.StateContext;
-import tdt4240.chess.Utility.Tuple;
+import tdt4240.chess.Models.Utility.ChessmanColor;
+import tdt4240.chess.Models.Utility.StateContext;
+import tdt4240.chess.Models.Utility.Tuple;
 
 public class Chessman extends Actor {
 
