@@ -3,7 +3,7 @@ package tdt4240.chess.Models;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import java.util.ArrayList;
 import tdt4240.chess.Controllers.BoardController;
-import tdt4240.chess.Controllers.TheChessmen;
+import tdt4240.chess.TheChessmen;
 import tdt4240.chess.Models.Utility.ChessmanColor;
 
 public class Board extends Table {

@@ -12,9 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import tdt4240.chess.AssetClasses.GraphicsAssets;
 import tdt4240.chess.AssetClasses.SoundAssets;
-import tdt4240.chess.Controllers.TheChessmen;
+import tdt4240.chess.TheChessmen;
 import tdt4240.chess.Models.Board;
-import tdt4240.chess.Models.Utility.ChessmanColor;
 
 public class WinScreen implements Screen {
 
@@ -34,7 +33,7 @@ public class WinScreen implements Screen {
         btnGroup = new VerticalGroup();
         winnerLabel = new Label(this.winner + " is victorious!", GraphicsAssets.secondaryLabelStyle);
 
-        menuBtn = new TextButton("TheChessmen Menu", GraphicsAssets.btnStyle);
+        menuBtn = new TextButton("Main Menu", GraphicsAssets.btnStyle);
         replayBtn = new TextButton("Play Again", GraphicsAssets.btnStyle);
 
         menuBtn.addListener(new ClickListener() {
