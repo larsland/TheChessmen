@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import tdt4240.chess.AssetClasses.GraphicsAssets;
+import tdt4240.chess.AssetClasses.SoundAssets;
 import tdt4240.chess.Controllers.TheChessmen;
 
 public class HelpScreen implements Screen{
@@ -46,6 +47,7 @@ public class HelpScreen implements Screen{
         backBtn = new TextButton("Back", GraphicsAssets.btnStyle);
         backBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 game.setScreen(new MainMenu(game));
             }
         });

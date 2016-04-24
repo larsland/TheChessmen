@@ -58,6 +58,7 @@ public class MainMenu implements Screen {
         helpBtn = new TextButton("Help", GraphicsAssets.btnStyle);
         helpBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                SoundAssets.playAttackChessmanSound();
                 game.setScreen(new HelpScreen(game));
 
             }
